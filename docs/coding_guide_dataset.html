@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>서대리 지침서 - 20회 스윙 데이터세트 생성</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; line-height: 1.6; }
+        .header { background: #007acc; color: white; padding: 15px; border-radius: 5px; }
+        .section { margin: 20px 0; padding: 15px; border: 1px solid #ddd; border-radius: 5px; }
+        .important { background: #fff3cd; border-color: #ffeaa7; }
+        .spec-box { background: #f0f8f0; padding: 15px; border-left: 4px solid #2d5016; }
+        .code-block { background: #f8f9fa; padding: 15px; border-radius: 5px; font-family: monospace; }
+        .formula { background: #e3f2fd; padding: 10px; border-radius: 3px; margin: 10px 0; }
+        .warning { background: #f8d7da; border-color: #f5c6cb; color: #721c24; padding: 10px; border-radius: 3px; }
+        table { width: 100%; border-collapse: collapse; margin: 10px 0; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background-color: #f2f2f2; }
+        ul li { margin: 5px 0; }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>📊 서대리 데이터 생성 지침서</h1>
+        <h2>무방 프로토타입 - 20회 스윙 데이터세트</h2>
+        <p><strong>작성자:</strong> 노팀장 | <strong>작성일:</strong> [2025.01.10 15:30]</p>
+    </div>
+
+    <div class="section important">
+        <h2>⚠️ 필수 준수 사항</h2>
+        <ul>
+            <li><strong>파일 생성:</strong> Z:\html\data\swing_dataset.js (JavaScript 배열 형태)</li>
+            <li><strong>데이터 구조:</strong> JSON 호환 가능한 JavaScript 객체</li>
+            <li><strong>실제 구현:</strong> measurement.html에서 바로 사용 가능한 형태</li>
+            <li><strong>성능 고려:</strong> 브라우저에서 원활한 애니메이션 지원</li>
+            <li><strong>확장성:</strong> 향후 실제 센서 데이터 연동 가능한 구조</li>
+        </ul>
+    </div>
+
+    <div class="section">
+        <h2>🔧 기술 사양 정의</h2>
+        
+        <div class="spec-box">
+            <h3>센서 하드웨어 사양</h3>
+            <ul>
+                <li><strong>자이로 센서:</strong> 3축 (X, Y, Z) 가속도 측정</li>
+                <li><strong>샘플링 주파수:</strong> 100Hz (1초당 100개 데이터)</li>
+                <li><strong>스윙 시간:</strong> 2초 (백스윙 1초 + 다운스윙 1초)</li>
+                <li><strong>총 데이터 포인트:</strong> 200개/스윙 (각 축별)</li>
+                <li><strong>데이터 범위:</strong> -2000 ~ +2000 (가속도 단위)</li>
+            </ul>
+        </div>
+
+        <div class="spec-box">
+            <h3>물리적 환산</h3>
+            <ul>
+                <li><strong>연습기 길이:</strong> 85cm</li>
+                <li><strong>실제 드라이버:</strong> 130cm</li>
+                <li><strong>환산 계수:</strong> 1.529 (130/85)</li>
+                <li><strong>목표 속도 범위:</strong> 30-45 m/s (드라이버 기준)</li>
+                <li><strong>센서 속도 범위:</strong> 19.6-29.4 m/s (연습기 기준)</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>📊 데이터 구조 요구사항</h2>
+        
+        <div class="code-block">
+            <h3>JavaScript 객체 구조 (예시)</h3>
+            <pre>
+const swingDataset = {
+    sessionInfo: {
+        totalSwings: 20,
+        sampleRate: 100,    // Hz
+        swingDuration: 2,   // seconds
+        deviceLength: 85,   // cm
+        driverLength: 130,  // cm
+        conversionFactor: 1.529
+    },
+    swings: [
+        {
+            id: 1,
+            timestamp: "2025-01-10T15:30:01.000Z",
+            sensorData: {
+                x: [array of 200 values],
+                y: [array of 200 values], 
+                z: [array of 200 values]
+            },
+            analysis: {
+                maxSpeed: 19.6,        // m/s (센서 기준)
+                driverSpeed: 30.0,     // m/s (환산값)
+                distance: 155,         // yards
+                impactTime: 1.2,       // seconds
+                trajectory: "standard",
+                efficiency: 85         // %
+            },
+            visualization: {
+                pathType: "standard",
+                colors: {
+                    backswing: "#90ee90",
+                    downswing: "#ffd700", 
+                    impact: "#ff4444"
+                },
+                keyPoints: [
+                    {time: 0.0, angle: 0, speed: 0},
+                    {time: 1.0, angle: 90, speed: 5},
+                    {time: 1.2, angle: 0, speed: 19.6}
+                ]
+            }
+        }
+        // ... 나머지 19개 스윙
+    ]
+};
+            </pre>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>🎯 20회 스윙 시나리오</h2>
+        
+        <table>
+            <tr>
+                <th>스윙 그룹</th>
+                <th>스윙 번호</th>
+                <th>속도 범위</th>
+                <th>특성</th>
+                <th>궤도 패턴</th>
+            </tr>
+            <tr>
+                <td>워밍업</td>
+                <td>1-3</td>
+                <td>30-34 m/s</td>
+                <td>조심스럽고 안정적</td>
+                <td>표준, 약간 긴장</td>
+            </tr>
+            <tr>
+                <td>적응기</td>
+                <td>4-7</td>
+                <td>34-40 m/s</td>
+                <td>점진적 속도 증가</td>
+                <td>다양한 궤도 시도</td>
+            </tr>
+            <tr>
+                <td>절정기</td>
+                <td>8-12</td>
+                <td>40-45 m/s</td>
+                <td>최고 성능, 간헐적 실수</td>
+                <td>파워 스윙과 조절 스윙</td>
+            </tr>
+            <tr>
+                <td>안정기</td>
+                <td>13-17</td>
+                <td>35-43 m/s</td>
+                <td>컨트롤 중심</td>
+                <td>일관성 추구</td>
+            </tr>
+            <tr>
+                <td>마무리</td>
+                <td>18-20</td>
+                <td>36-40 m/s</td>
+                <td>안정적 마무리</td>
+                <td>표준 궤도 위주</td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="section">
+        <h2>🎨 스윙 궤도 타입 정의</h2>
+        
+        <h3>1. 표준 궤도 (Standard)</h3>
+        <div class="formula">
+            - 각도 변화: 0° → 90° → 0° (자연스러운 호)
+            - 색상: 연두색 → 노란색 → 빨간색
+            - 특징: 가장 이상적인 스윙 플레인
+        </div>
+
+        <h3>2. 인사이드아웃 (Inside-Out)</h3>
+        <div class="formula">
+            - 각도 변화: 내측에서 시작하여 외측으로 마무리
+            - 색상: 초록색 → 주황색 → 빨간색  
+            - 특징: 드로우샷 궤도, 파워 증가
+        </div>
+
+        <h3>3. 아웃사이드인 (Outside-In)</h3>
+        <div class="formula">
+            - 각도 변화: 외측에서 시작하여 내측으로 마무리
+            - 색상: 파란색 → 보라색 → 빨간색
+            - 특징: 페이드샷 궤도, 슬라이스 위험
+        </div>
+
+        <h3>4. 업라이트 (Upright)</h3>
+        <div class="formula">
+            - 각도 변화: 수직에 가까운 가파른 궤도
+            - 색상: 하늘색 → 청록색 → 빨간색
+            - 특징: 높은 볼 궤적
+        </div>
+
+        <h3>5. 플랫 (Flat)</h3>
+        <div class="formula">
+            - 각도 변화: 수평에 가까운 평면적 궤도  
+            - 색상: 갈색 → 황토색 → 빨간색
+            - 특징: 낮은 볼 궤적
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>⚙️ 계산 공식 및 알고리즘</h2>
+        
+        <div class="code-block">
+            <h3>1. 속도 계산</h3>
+            <pre>
+// 3축 가속도에서 합성 속도 계산
+function calculateSpeed(x, y, z) {
+    return Math.sqrt(x*x + y*y + z*z) / 100; // m/s 변환
+}
+
+// 드라이버 속도 환산
+function convertToDriverSpeed(sensorSpeed) {
+    return sensorSpeed * 1.529;
+}
+            </pre>
+        </div>
+
+        <div class="code-block">
+            <h3>2. 비거리 추정</h3>
+            <pre>
+function calculateDistance(driverSpeed) {
+    const baseDistance = driverSpeed * 5.5;
+    const randomFactor = (Math.random() - 0.5) * 25; // ±12.5야드
+    return Math.round(baseDistance + randomFactor);
+}
+            </pre>
+        </div>
+
+        <div class="code-block">
+            <h3>3. 궤도 생성</h3>
+            <pre>
+function generateTrajectory(swingType, maxSpeed) {
+    const points = [];
+    for(let i = 0; i < 200; i++) {
+        const time = i / 100; // 0-2초
+        const angle = calculateAngle(time, swingType);
+        const speed = calculateInstantSpeed(time, maxSpeed);
+        points.push({time, angle, speed});
+    }
+    return points;
+}
+            </pre>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>📱 UI 연동 고려사항</h2>
+        
+        <h3>measurement.html에서 사용할 함수들</h3>
+        <ul>
+            <li><strong>getSwingData(swingNumber)</strong> - 특정 스윙 데이터 반환</li>
+            <li><strong>animateSwing(swingData)</strong> - 궤도 애니메이션 실행</li>
+            <li><strong>displayResults(analysis)</strong> - 결과 표시</li>
+            <li><strong>getNextSwing()</strong> - 다음 스윙 데이터 준비</li>
+            <li><strong>resetSession()</strong> - 세션 초기화</li>
+        </ul>
+
+        <h3>성능 최적화</h3>
+        <ul>
+            <li>큰 배열은 지연 로딩 방식 고려</li>
+            <li>애니메이션용 키 포인트만 별도 저장</li>
+            <li>메모리 사용량 최소화</li>
+            <li>부드러운 60fps 애니메이션 지원</li>
+        </ul>
+    </div>
+
+    <div class="warning">
+        <h2>🚨 중요 주의사항</h2>
+        <ul>
+            <li><strong>현실성:</strong> 실제 골프 스윙과 유사한 패턴 구현</li>
+            <li><strong>다양성:</strong> 20회 모두 다른 특성을 가져야 함</li>
+            <li><strong>일관성:</strong> 물리 법칙에 맞는 데이터</li>
+            <li><strong>확장성:</strong> 실제 센서 데이터로 교체 가능한 구조</li>
+            <li><strong>호환성:</strong> 모든 모던 브라우저에서 동작</li>
+        </ul>
+    </div>
+
+    <div class="section">
+        <h2>✅ 완성 기준</h2>
+        <ol>
+            <li>swing_dataset.js 파일 생성 완료</li>
+            <li>20개 스윙 데이터 모두 정의</li>
+            <li>5가지 궤도 타입 골고루 분포</li>
+            <li>속도 범위 30-45m/s 적절히 분포</li>
+            <li>시각화용 색상 및 키포인트 정의</li>
+            <li>measurement.html 연동 함수 제공</li>
+            <li>브라우저에서 로딩 및 실행 테스트 완료</li>
+        </ol>
+    </div>
+
+    <hr>
+    <footer>
+        <p><strong>조대표님과 노팀장 승인 후 개발 시작!</strong></p>
+        <p><em>완성 후 Z:\html\data\swing_dataset.js에 저장하고 보고해주세요</em></p>
+        <p>작성일: [2025.01.10 15:30] | 담당: 서대리</p>
+    </footer>
+</body>
+</html>

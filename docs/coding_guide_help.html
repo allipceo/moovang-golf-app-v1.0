@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>서대리 코딩 지침서 - help.html</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; line-height: 1.6; }
+        .header { background: #007acc; color: white; padding: 15px; border-radius: 5px; }
+        .section { margin: 20px 0; padding: 15px; border: 1px solid #ddd; border-radius: 5px; }
+        .important { background: #fff3cd; border-color: #ffeaa7; }
+        .feature-box { background: #e8f5e8; padding: 15px; border-radius: 5px; margin: 10px 0; }
+        .code-block { background: #f8f9fa; padding: 15px; border-radius: 5px; font-family: monospace; }
+        .guide-spec { background: #f0f8f0; padding: 15px; border-left: 4px solid #2d5016; margin: 10px 0; }
+        .warning { background: #f8d7da; border-color: #f5c6cb; color: #721c24; padding: 10px; border-radius: 3px; }
+        table { width: 100%; border-collapse: collapse; margin: 10px 0; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background-color: #2d5016; color: white; }
+        ul li { margin: 5px 0; }
+        .content-demo { background: #e3f2fd; padding: 10px; margin: 5px 0; border-radius: 3px; }
+        .accordion-demo { background: #f8f9fa; border: 1px solid #ddd; padding: 10px; margin: 5px 0; }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>❓ 서대리 코딩 지침서</h1>
+        <h2>help.html - 도움말 페이지</h2>
+        <p><strong>작성자:</strong> 노팀장 | <strong>작성일:</strong> [2025.01.10 17:30]</p>
+    </div>
+
+    <div class="section important">
+        <h2>⚠️ 필수 준수 사항</h2>
+        <ul>
+            <li><strong>파일 위치:</strong> Z:\html\help.html</li>
+            <li><strong>핵심 목적:</strong> 사용자가 쉽게 이해할 수 있는 도움말</li>
+            <li><strong>구조:</strong> 아코디언 형태의 FAQ + 단계별 가이드</li>
+            <li><strong>내용:</strong> 실용적이고 간결한 설명</li>
+            <li><strong>시각화:</strong> 스크린샷 대신 아이콘과 텍스트 설명</li>
+            <li><strong>검색 기능:</strong> 키워드로 도움말 찾기</li>
+        </ul>
+    </div>
+
+    <div class="section">
+        <h2>🎯 페이지 핵심 구성</h2>
+        
+        <div class="feature-box">
+            <h3>1. 빠른 시작 가이드</h3>
+            <ul>
+                <li><strong>5단계 시작 방법:</strong> 앱 첫 사용자를 위한 핵심 절차</li>
+                <li><strong>시각적 스텝:</strong> 숫자 + 아이콘으로 단계 표현</li>
+                <li><strong>예상 소요시간:</strong> 각 단계별 시간 안내</li>
+                <li><strong>주의사항:</strong> 초보자가 놓치기 쉬운 포인트</li>
+            </ul>
+        </div>
+
+        <div class="feature-box">
+            <h3>2. 자주 묻는 질문 (FAQ)</h3>
+            <ul>
+                <li><strong>블루투스 연결:</strong> 연결 안됨, 연결 끊김 해결법</li>
+                <li><strong>측정 관련:</strong> 정확도, 오차, 캘리브레이션</li>
+                <li><strong>데이터 관리:</strong> 저장, 백업, 초기화</li>
+                <li><strong>기술 지원:</strong> 호환성, 업데이트, 문의</li>
+            </ul>
+        </div>
+
+        <div class="feature-box">
+            <h3>3. 기능별 상세 가이드</h3>
+            <ul>
+                <li><strong>스윙 측정:</strong> 올바른 측정 방법과 팁</li>
+                <li><strong>데이터 분석:</strong> 차트 읽는 법, 개선 방법</li>
+                <li><strong>설정 관리:</strong> 개인화 및 최적화</li>
+                <li><strong>문제 해결:</strong> 일반적인 오류 해결법</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>📱 화면 구성 요구사항</h2>
+        
+        <h3>1. 헤더 영역</h3>
+        <ul>
+            <li>페이지 제목: "도움말"</li>
+            <li>홈 버튼 (←) - index.html로 이동</li>
+            <li>검색 박스 (🔍) - 키워드 검색</li>
+            <li>문의하기 버튼 (📧)</li>
+        </ul>
+
+        <h3>2. 검색 섹션</h3>
+        <div class="content-demo">
+            <p><strong>기능:</strong> 도움말 내용 실시간 검색</p>
+            <p><strong>UI:</strong> 상단 고정된 검색 바</p>
+            <p><strong>동작:</strong> 입력 즉시 관련 FAQ 필터링</p>
+        </div>
+
+        <h3>3. 빠른 시작 가이드</h3>
+        <div class="guide-spec">
+            <h4>5단계 시작 절차</h4>
+            <ol>
+                <li><strong>1단계:</strong> 무방 센서 전원 켜기 (30초)</li>
+                <li><strong>2단계:</strong> 앱에서 블루투스 연결 (1분)</li>
+                <li><strong>3단계:</strong> 개인정보 입력 (2분)</li>
+                <li><strong>4단계:</strong> 첫 스윙 측정 (5분)</li>
+                <li><strong>5단계:</strong> 결과 분석 보기 (2분)</li>
+            </ol>
+        </div>
+
+        <h3>4. FAQ 아코디언</h3>
+        <div class="accordion-demo">
+            <p><strong>구조:</strong> 질문 클릭 → 답변 펼치기</p>
+            <p><strong>카테고리:</strong> 시작하기, 연결, 측정, 분석, 문제해결</p>
+            <p><strong>검색연동:</strong> 검색어 입력시 관련 FAQ만 표시</p>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>📚 도움말 컨텐츠 정의</h2>
+        
+        <h3>빠른 시작 가이드 상세 내용</h3>
+        <table>
+            <tr>
+                <th>단계</th>
+                <th>제목</th>
+                <th>설명</th>
+                <th>팁</th>
+            </tr>
+            <tr>
+                <td>1️⃣</td>
+                <td>센서 준비</td>
+                <td>무방 센서의 전원 버튼을 3초간 누르세요</td>
+                <td>LED가 파란색으로 깜빡이면 준비 완료</td>
+            </tr>
+            <tr>
+                <td>2️⃣</td>
+                <td>블루투스 연결</td>
+                <td>설정 > 블루투스에서 기기를 검색하세요</td>
+                <td>센서가 검색되지 않으면 5초 대기 후 재시도</td>
+            </tr>
+            <tr>
+                <td>3️⃣</td>
+                <td>개인정보 설정</td>
+                <td>이름, 핸디캡 등 기본 정보를 입력하세요</td>
+                <td>정확한 핸디캡 입력이 분석 정확도를 높입니다</td>
+            </tr>
+            <tr>
+                <td>4️⃣</td>
+                <td>첫 측정</td>
+                <td>스윙측정 > 연속측정으로 20회 스윙하세요</td>
+                <td>자연스러운 스윙을 유지하세요</td>
+            </tr>
+            <tr>
+                <td>5️⃣</td>
+                <td>결과 확인</td>
+                <td>스윙분석에서 데이터를 확인하세요</td>
+                <td>평균 속도와 궤도 분포를 중점적으로 보세요</td>
+            </tr>
+        </table>
+
+        <h3>FAQ 주요 질문과 답변</h3>
+        
+        <div class="feature-box">
+            <h4>🔗 연결 관련 FAQ</h4>
+            <ul>
+                <li><strong>Q: 블루투스가 연결되지 않아요</strong>
+                    <ul>
+                        <li>A: 센서 전원 확인 → 스마트폰 블루투스 재시작 → 앱 재실행 순으로 시도하세요</li>
+                    </ul>
+                </li>
+                <li><strong>Q: 연결이 자주 끊어져요</strong>
+                    <ul>
+                        <li>A: 센서와 폰 사이 거리를 2m 이내로 유지하고, 다른 블루투스 기기와의 간섭을 피하세요</li>
+                    </ul>
+                </li>
+                <li><strong>Q: 여러 센서를 동시에 사용할 수 있나요?</strong>
+                    <ul>
+                        <li>A: 현재 버전에서는 한 번에 하나의 센서만 연결 가능합니다</li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+
+        <div class="feature-box">
+            <h4>📊 측정 관련 FAQ</h4>
+            <ul>
+                <li><strong>Q: 측정 결과가 부정확한 것 같아요</strong>
+                    <ul>
+                        <li>A: 연습기를 실제 골프채처럼 자연스럽게 스윙하세요. 무리한 힘은 피하세요</li>
+                    </ul>
+                </li>
+                <li><strong>Q: 20회 측정 중간에 멈출 수 있나요?</strong>
+                    <ul>
+                        <li>A: 네, 일시정지 버튼으로 언제든 중단하고 재개할 수 있습니다</li>
+                    </ul>
+                </li>
+                <li><strong>Q: 실내와 실외 측정 차이가 있나요?</strong>
+                    <ul>
+                        <li>A: 측정값은 동일하지만, 실외에서 더 자연스러운 스윙이 가능합니다</li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+
+        <div class="feature-box">
+            <h4>📈 분석 관련 FAQ</h4>
+            <ul>
+                <li><strong>Q: 스윙 궤도 색깔의 의미는 무엇인가요?</strong>
+                    <ul>
+                        <li>A: 초록색(표준), 주황색(인사이드아웃), 파란색(아웃사이드인) 등으로 궤도 타입을 구분합니다</li>
+                    </ul>
+                </li>
+                <li><strong>Q: 목표 속도는 어떻게 설정하나요?</strong>
+                    <ul>
+                        <li>A: 설정 > 개인정보에서 현재 실력보다 5-10% 높게 설정하는 것을 권장합니다</li>
+                    </ul>
+                </li>
+                <li><strong>Q: 데이터를 다른 기기로 옮길 수 있나요?</strong>
+                    <ul>
+                        <li>A: 설정 > 데이터 관리에서 백업 파일을 생성하여 다른 기기로 이동 가능합니다</li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>🔧 JavaScript 기능 구현</h2>
+        
+        <div class="code-block">
+            <h3>필수 구현 함수</h3>
+            <pre>
+// 1. 검색 기능
+function searchHelp(keyword)         // 도움말 내용 실시간 검색
+function filterFAQ(searchTerm)       // FAQ 필터링
+function highlightResults(text)      // 검색 결과 하이라이트
+
+// 2. 아코디언 UI
+function toggleAccordion(index)      // FAQ 펼치기/접기
+function expandAll()                 // 모든 FAQ 펼치기
+function collapseAll()               // 모든 FAQ 접기
+
+// 3. 네비게이션
+function scrollToSection(sectionId) // 특정 섹션으로 스크롤
+function showQuickStart()            // 빠른 시작 가이드 표시
+function showFAQ(category)           // 카테고리별 FAQ 표시
+
+// 4. 상호작용
+function copyText(element)           // 텍스트 복사 기능
+function printHelp()                 // 도움말 인쇄
+function shareHelp()                 // 도움말 공유
+function contactSupport()            // 고객지원 연결
+            </pre>
+        </div>
+
+        <h3>검색 기능 구현</h3>
+        <div class="code-block">
+            <pre>
+function searchHelp(keyword) {
+    const searchTerm = keyword.toLowerCase().trim();
+    const faqItems = document.querySelectorAll('.faq-item');
+    const quickStartSteps = document.querySelectorAll('.quick-start-step');
+    
+    if (searchTerm === '') {
+        // 모든 항목 표시
+        faqItems.forEach(item => item.style.display = 'block');
+        quickStartSteps.forEach(step => step.style.display = 'block');
+        return;
+    }
+    
+    // FAQ 검색
+    faqItems.forEach(item => {
+        const question = item.querySelector('.question').textContent.toLowerCase();
+        const answer = item.querySelector('.answer').textContent.toLowerCase();
+        
+        if (question.includes(searchTerm) || answer.includes(searchTerm)) {
+            item.style.display = 'block';
+            highlightResults(item, searchTerm);
+        } else {
+            item.style.display = 'none';
+        }
+    });
+    
+    // 빠른 시작 가이드 검색
+    quickStartSteps.forEach(step => {
+        const content = step.textContent.toLowerCase();
+        step.style.display = content.includes(searchTerm) ? 'block' : 'none';
+    });
+}
+            </pre>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>🎨 UI/UX 디자인 가이드</h2>
+        
+        <h3>아코디언 디자인</h3>
+        <ul>
+            <li><strong>질문 버튼:</strong> 전체 폭, 좌측 정렬, 우측 화살표 아이콘</li>
+            <li><strong>답변 영역:</strong> 부드러운 슬라이드 애니메이션</li>
+            <li><strong>활성 상태:</strong> 골프 그린 색상으로 강조</li>
+            <li><strong>호버 효과:</strong> 배경색 변화로 인터랙션 표시</li>
+        </ul>
+
+        <h3>검색 UI</h3>
+        <ul>
+            <li><strong>검색 바:</strong> 상단 고정, 돋보기 아이콘</li>
+            <li><strong>자동완성:</strong> 인기 검색어 드롭다운</li>
+            <li><strong>검색 결과:</strong> 키워드 하이라이트</li>
+            <li><strong>결과 없음:</strong> 친화적인 안내 메시지</li>
+        </ul>
+
+        <h3>빠른 시작 가이드 디자인</h3>
+        <table>
+            <tr>
+                <th>요소</th>
+                <th>디자인</th>
+                <th>설명</th>
+            </tr>
+            <tr>
+                <td>단계 번호</td>
+                <td>원형 배지 + 숫자</td>
+                <td>골프 그린 배경, 흰색 텍스트</td>
+            </tr>
+            <tr>
+                <td>제목</td>
+                <td>볼드체 + 큰 폰트</td>
+                <td>단계별 핵심 내용 강조</td>
+            </tr>
+            <tr>
+                <td>설명</td>
+                <td>일반 텍스트</td>
+                <td>구체적인 실행 방법</td>
+            </tr>
+            <tr>
+                <td>팁</td>
+                <td>이탤릭 + 연한 색상</td>
+                <td>도움이 되는 추가 정보</td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="section">
+        <h2>📧 고객 지원 연동</h2>
+        
+        <div class="guide-spec">
+            <h3>지원 채널</h3>
+            <ul>
+                <li><strong>이메일:</strong> support@humancircle.co.kr</li>
+                <li><strong>전화:</strong> 1588-0000 (평일 9-18시)</li>
+                <li><strong>홈페이지:</strong> www.moovang.com/support</li>
+                <li><strong>원격지원:</strong> TeamViewer 링크 제공</li>
+            </ul>
+        </div>
+
+        <div class="code-block">
+            <h3>문의하기 기능</h3>
+            <pre>
+function contactSupport() {
+    const userAgent = navigator.userAgent;
+    const timestamp = new Date().toISOString();
+    const appVersion = "MOOVANG V1.0";
+    
+    const emailBody = `
+안녕하세요. 무방 앱 사용 중 문의사항이 있습니다.
+
+[문의 내용을 여기에 작성해주세요]
+
+---
+시스템 정보:
+- 앱 버전: ${appVersion}
+- 기기 정보: ${userAgent}
+- 문의 시간: ${timestamp}
+    `.trim();
+    
+    const mailto = `mailto:support@humancircle.co.kr?subject=무방 앱 문의&body=${encodeURIComponent(emailBody)}`;
+    window.open(mailto);
+}
+            </pre>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>📱 모바일 최적화</h2>
+        
+        <h3>터치 인터페이스</h3>
+        <ul>
+            <li><strong>FAQ 버튼:</strong> 최소 44px 높이로 터치하기 쉽게</li>
+            <li><strong>검색창:</strong> 자동 포커스, 가상 키보드 최적화</li>
+            <li><strong>스크롤:</strong> 부드러운 스크롤링, 섹션 네비게이션</li>
+            <li><strong>복사 기능:</strong> 길게 눌러서 텍스트 복사</li>
+        </ul>
+
+        <h3>성능 최적화</h3>
+        <ul>
+            <li><strong>지연 로딩:</strong> 보이는 FAQ만 렌더링</li>
+            <li><strong>검색 디바운싱:</strong> 입력 후 300ms 대기</li>
+            <li><strong>캐싱:</strong> 자주 찾는 FAQ 미리 로드</li>
+            <li><strong>압축:</strong> 이미지 없이 텍스트 위주 구성</li>
+        </ul>
+    </div>
+
+    <div class="warning">
+        <h2>🚨 중요 주의사항</h2>
+        <ul>
+            <li><strong>사용자 친화성:</strong> 전문용어 최소화, 쉬운 설명</li>
+            <li><strong>정확성:</strong> 실제 앱 기능과 100% 일치하는 설명</li>
+            <li><strong>완성도:</strong> 모든 주요 기능에 대한 도움말 포함</li>
+            <li><strong>검색 최적화:</strong> 사용자가 자주 찾을 키워드 고려</li>
+            <li><strong>업데이트 용이성:</strong> 새 기능 추가시 쉽게 수정 가능</li>
+            <li><strong>일관성:</strong> 다른 페이지들과 동일한 용어 사용</li>
+        </ul>
+    </div>
+
+    <div class="section">
+        <h2>✅ 완성 검증 기준</h2>
+        <ol>
+            <li>5단계 빠른 시작 가이드 완벽 구현</li>
+            <li>15개 이상 주요 FAQ 아코디언 형태로 구성</li>
+            <li>실시간 검색 기능 정상 동작</li>
+            <li>모든 FAQ 펼치기/접기 기능</li>
+            <li>고객지원 연결 기능 (이메일, 전화)</li>
+            <li>모바일에서 터치 인터페이스 완벽</li>
+            <li>검색 결과 하이라이트 기능</li>
+            <li>기존 페이지들과 일관된 디자인</li>
+        </ol>
+    </div>
+
+    <hr>
+    <footer>
+        <p><strong>조대표님 승인 후 개발 시작!</strong></p>
+        <p><em>완성 후 Z:\html\help.html에 저장하고 보고해주세요</em></p>
+        <p>작성일: [2025.01.10 17:30] | 담당: 서대리</p>
+        <p><strong>목표:</strong> 사용자가 스스로 문제를 해결할 수 있는 완벽한 도움말</p>
+    </footer>
+</body>
+</html>

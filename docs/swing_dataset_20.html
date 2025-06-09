@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>무방 프로토타입 - 20회 스윙 데이터세트</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; line-height: 1.6; }
+        .header { background: #2d5016; color: white; padding: 15px; border-radius: 5px; }
+        .section { margin: 20px 0; padding: 15px; border: 1px solid #ddd; border-radius: 5px; }
+        .data-spec { background: #f0f8f0; padding: 15px; border-left: 4px solid #2d5016; }
+        .swing-data { background: #f8f9fa; padding: 10px; margin: 5px 0; border-radius: 3px; }
+        table { width: 100%; border-collapse: collapse; margin: 10px 0; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: center; }
+        th { background-color: #2d5016; color: white; }
+        .speed-low { background-color: #ffebee; }
+        .speed-mid { background-color: #fff3e0; }
+        .speed-high { background-color: #e8f5e8; }
+        .formula { background: #e3f2fd; padding: 10px; border-radius: 3px; font-family: monospace; }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>📊 무방 프로토타입 데이터세트</h1>
+        <h2>20회 스윙 시뮬레이션 데이터</h2>
+        <p><strong>작성일:</strong> [2025.01.10 15:20] | <strong>작성자:</strong> 노팀장</p>
+    </div>
+
+    <div class="section">
+        <h2>🔧 기술 사양</h2>
+        <div class="data-spec">
+            <h3>센서 데이터 사양</h3>
+            <ul>
+                <li><strong>샘플링 주기:</strong> 1초당 100개 (100Hz)</li>
+                <li><strong>스윙 시간:</strong> 2초 (백스윙 1초 + 다운스윙 1초)</li>
+                <li><strong>총 데이터 포인트:</strong> 200개/스윙 (X, Y, Z 각각)</li>
+                <li><strong>연습기 길이:</strong> 85cm</li>
+                <li><strong>실제 드라이버:</strong> 130cm</li>
+                <li><strong>환산 비율:</strong> 130/85 = 1.529</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>📐 계산 공식</h2>
+        <div class="formula">
+            <h3>1. 드라이버 속도 환산</h3>
+            <p>실제_헤드스피드 = 센서_측정값 × 1.529</p>
+            
+            <h3>2. 예상 비거리 계산</h3>
+            <p>비거리(야드) = 헤드스피드(m/s) × 5.5 + 랜덤팩터(-10~+15)</p>
+            
+            <h3>3. 스윙 궤도 패턴</h3>
+            <p>백스윙: 서서히 상승 (0° → 90°)</p>
+            <p>다운스윙: 급격히 하강 (90° → 0°) + 임팩트 순간 최고속도</p>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>🎯 20회 스윙 데이터세트</h2>
+        <table>
+            <tr>
+                <th>스윙#</th>
+                <th>센서속도<br>(m/s)</th>
+                <th>드라이버속도<br>(m/s)</th>
+                <th>예상비거리<br>(야드)</th>
+                <th>궤도타입</th>
+                <th>특징</th>
+            </tr>
+            <tr class="speed-low">
+                <td>1</td>
+                <td>19.6</td>
+                <td>30.0</td>
+                <td>155</td>
+                <td>표준</td>
+                <td>연습 시작, 조심스러운 스윙</td>
+            </tr>
+            <tr class="speed-low">
+                <td>2</td>
+                <td>20.9</td>
+                <td>32.0</td>
+                <td>168</td>
+                <td>아웃사이드인</td>
+                <td>약간 긴장된 궤도</td>
+            </tr>
+            <tr class="speed-mid">
+                <td>3</td>
+                <td>22.2</td>
+                <td>34.0</td>
+                <td>182</td>
+                <td>표준</td>
+                <td>점점 적응</td>
+            </tr>
+            <tr class="speed-mid">
+                <td>4</td>
+                <td>23.5</td>
+                <td>36.0</td>
+                <td>195</td>
+                <td>인사이드아웃</td>
+                <td>좋은 궤도</td>
+            </tr>
+            <tr class="speed-mid">
+                <td>5</td>
+                <td>21.6</td>
+                <td>33.0</td>
+                <td>175</td>
+                <td>업라이트</td>
+                <td>약간 수직적</td>
+            </tr>
+            <tr class="speed-mid">
+                <td>6</td>
+                <td>24.8</td>
+                <td>38.0</td>
+                <td>205</td>
+                <td>표준</td>
+                <td>리듬 찾음</td>
+            </tr>
+            <tr class="speed-mid">
+                <td>7</td>
+                <td>26.1</td>
+                <td>40.0</td>
+                <td>225</td>
+                <td>인사이드아웃</td>
+                <td>자신감 상승</td>
+            </tr>
+            <tr class="speed-high">
+                <td>8</td>
+                <td>27.4</td>
+                <td>42.0</td>
+                <td>238</td>
+                <td>표준</td>
+                <td>최고 조건</td>
+            </tr>
+            <tr class="speed-mid">
+                <td>9</td>
+                <td>25.4</td>
+                <td>39.0</td>
+                <td>208</td>
+                <td>플랫</td>
+                <td>약간 평면적</td>
+            </tr>
+            <tr class="speed-high">
+                <td>10</td>
+                <td>28.7</td>
+                <td>44.0</td>
+                <td>248</td>
+                <td>인사이드아웃</td>
+                <td>파워 스윙</td>
+            </tr>
+            <tr class="speed-mid">
+                <td>11</td>
+                <td>23.5</td>
+                <td>36.0</td>
+                <td>192</td>
+                <td>아웃사이드인</td>
+                <td>약간 피로</td>
+            </tr>
+            <tr class="speed-high">
+                <td>12</td>
+                <td>29.4</td>
+                <td>45.0</td>
+                <td>255</td>
+                <td>표준</td>
+                <td>최대 파워</td>
+            </tr>
+            <tr class="speed-mid">
+                <td>13</td>
+                <td>26.7</td>
+                <td>41.0</td>
+                <td>228</td>
+                <td>업라이트</td>
+                <td>조절 시도</td>
+            </tr>
+            <tr class="speed-mid">
+                <td>14</td>
+                <td>24.1</td>
+                <td>37.0</td>
+                <td>198</td>
+                <td>표준</td>
+                <td>안정화</td>
+            </tr>
+            <tr class="speed-mid">
+                <td>15</td>
+                <td>25.4</td>
+                <td>39.0</td>
+                <td>212</td>
+                <td>인사이드아웃</td>
+                <td>좋은 감각</td>
+            </tr>
+            <tr class="speed-high">
+                <td>16</td>
+                <td>28.0</td>
+                <td>43.0</td>
+                <td>242</td>
+                <td>표준</td>
+                <td>집중력 최고</td>
+            </tr>
+            <tr class="speed-mid">
+                <td>17</td>
+                <td>22.9</td>
+                <td>35.0</td>
+                <td>185</td>
+                <td>플랫</td>
+                <td>컨트롤 스윙</td>
+            </tr>
+            <tr class="speed-mid">
+                <td>18</td>
+                <td>26.1</td>
+                <td>40.0</td>
+                <td>220</td>
+                <td>인사이드아웃</td>
+                <td>마무리 준비</td>
+            </tr>
+            <tr class="speed-mid">
+                <td>19</td>
+                <td>24.8</td>
+                <td>38.0</td>
+                <td>203</td>
+                <td>표준</td>
+                <td>일관성 유지</td>
+            </tr>
+            <tr class="speed-mid">
+                <td>20</td>
+                <td>23.5</td>
+                <td>36.0</td>
+                <td>195</td>
+                <td>표준</td>
+                <td>연습 마무리</td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="section">
+        <h2>🎨 궤도 타입별 시각적 특성</h2>
+        
+        <div class="swing-data">
+            <h3>1. 표준 궤도</h3>
+            <p>• 색상: 녹색(백스윙) → 노란색(다운스윙) → 빨간색(임팩트)</p>
+            <p>• 형태: 적당한 호를 그리며 자연스러운 궤도</p>
+        </div>
+
+        <div class="swing-data">
+            <h3>2. 인사이드아웃 궤도</h3>
+            <p>• 색상: 연두색(백스윙) → 주황색(다운스윙) → 빨간색(임팩트)</p>
+            <p>• 형태: 안쪽에서 바깥쪽으로 향하는 이상적 궤도</p>
+        </div>
+
+        <div class="swing-data">
+            <h3>3. 아웃사이드인 궤도</h3>
+            <p>• 색상: 파란색(백스윙) → 보라색(다운스윙) → 빨간색(임팩트)</p>
+            <p>• 형태: 바깥쪽에서 안쪽으로 향하는 슬라이스 궤도</p>
+        </div>
+
+        <div class="swing-data">
+            <h3>4. 업라이트 궤도</h3>
+            <p>• 색상: 하늘색(백스윙) → 청록색(다운스윙) → 빨간색(임팩트)</p>
+            <p>• 형태: 수직에 가까운 가파른 궤도</p>
+        </div>
+
+        <div class="swing-data">
+            <h3>5. 플랫 궤도</h3>
+            <p>• 색상: 갈색(백스윙) → 황토색(다운스윙) → 빨간색(임팩트)</p>
+            <p>• 형태: 수평에 가까운 평면적 궤도</p>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>📊 통계 요약</h2>
+        <table>
+            <tr>
+                <th>구분</th>
+                <th>최소값</th>
+                <th>최대값</th>
+                <th>평균값</th>
+            </tr>
+            <tr>
+                <td>드라이버 속도</td>
+                <td>30.0 m/s</td>
+                <td>45.0 m/s</td>
+                <td>37.8 m/s</td>
+            </tr>
+            <tr>
+                <td>예상 비거리</td>
+                <td>155 야드</td>
+                <td>255 야드</td>
+                <td>208 야드</td>
+            </tr>
+            <tr>
+                <td>궤도 분포</td>
+                <td colspan="3">표준 8회, 인사이드아웃 5회, 아웃사이드인 3회, 업라이트 2회, 플랫 2회</td>
+            </tr>
+        </table>
+    </div>
+
+    <hr>
+    <footer>
+        <p><strong>이 데이터세트는 measurement.html 프로토타입의 기반이 됩니다</strong></p>
+        <p><em>실제 센서 데이터 형태로 JSON/JavaScript 배열로 구현 예정</em></p>
+        <p>작성일: [2025.01.10 15:20] | 다음 단계: measurement.html 지침서 작성</p>
+    </footer>
+</body>
+</html>

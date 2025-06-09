@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>무방(MOOVANG) - 측정</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: sans-serif;
+            background: #fff;
+            color: #333;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        .header {
+            background: #2d5016;
+            color: #fff;
+            padding: 15px;
+            text-align: center;
+            font-size: 18px;
+        }
+        .content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            gap: 20px;
+        }
+        .measure-btn {
+            background: #2d5016;
+            color: #fff;
+            border: none;
+            padding: 20px 40px;
+            border-radius: 8px;
+            font-size: 18px;
+            cursor: pointer;
+            width: 80%;
+            max-width: 300px;
+            transition: all 0.3s ease;
+        }
+        .measure-btn:hover {
+            background: #1c3a0e;
+            transform: scale(1.02);
+        }
+        .footer {
+            background: #f5f5f5;
+            padding: 12px 15px;
+            display: grid;
+            grid-template-columns: 1fr auto;
+            align-items: center;
+            gap: 15px;
+        }
+        .control-btn {
+            background: #fff;
+            border: 2px solid #2d5016;
+            color: #2d5016;
+            padding: 8px 16px;
+            border-radius: 8px;
+            font-size: 18px;
+            cursor: pointer;
+            height: 70px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+        .control-btn:hover {
+            background: #2d5016;
+            color: #fff;
+            transform: scale(1.05);
+        }
+        .pause-btn {
+            width: 120px;
+            font-weight: bold;
+        }
+        .stat-box {
+            background: #fff;
+            padding: 8px;
+            border-radius: 6px;
+            text-align: center;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            min-width: 100px;
+        }
+        .stat-label {
+            font-size: 12px;
+            color: #666;
+            margin-bottom: 2px;
+        }
+        .stat-value {
+            font-size: 18px;
+            font-weight: bold;
+            color: #2d5016;
+        }
+        .home-btn {
+            background: #fff;
+            border: 2px solid #2d5016;
+            color: #2d5016;
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-left: 5px;
+        }
+        .home-btn:hover {
+            background: #2d5016;
+            color: #fff;
+            transform: scale(1.05);
+        }
+        .home-icon {
+            font-size: 40px;
+        }
+        #measurementInfo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #2d5016;
+            text-align: center;
+            margin: 20px 0;
+        }
+        #swingOrbit {
+            width: 300px;
+            height: 300px;
+            margin: 20px auto;
+        }
+        .message {
+            font-size: 48px;
+            font-weight: bold;
+            color: #2d5016;
+            text-align: center;
+            margin: 20px 0;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        .message.show {
+            opacity: 1;
+        }
+        .measurement-display {
+            display: none;
+            text-align: center;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        .measurement-value {
+            font-size: 72px;
+            font-weight: bold;
+            color: #2d5016;
+            margin: 10px 0;
+        }
+        .measurement-label {
+            font-size: 24px;
+            color: #666;
+            margin-bottom: 20px;
+        }
+        .measurement-round {
+            font-size: 36px;
+            color: #2d5016;
+            margin-bottom: 30px;
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        스윙 측정
+    </header>
+
+    <main class="content">
+        <button class="measure-btn" onclick="startMeasurement(10)">
+            연속 측정 (10회)
+        </button>
+        <button class="measure-btn" onclick="startMeasurement(20)">
+            연속 측정 (20회)
+        </button>
+        <div id="measurementInfo" style="display: none;"></div>
+        
+        <!-- 큰 화면의 측정값 표시 -->
+        <div class="measurement-display" id="measurementDisplay">
+            <div class="measurement-round" id="roundDisplay"></div>
+            <div class="measurement-label">스윙 속도</div>
+            <div class="measurement-value" id="speedDisplay">0 m/s</div>
+            <div class="measurement-label">비거리</div>
+            <div class="measurement-value" id="distanceDisplay">0 m</div>
+        </div>
+
+        <div id="orbitDisplay" style="display: none;">
+            <div class="measurement-round" id="orbitRoundDisplay"></div>
+            <svg id="swingOrbit" style="display: none;"></svg>
+        </div>
+        <div class="message" style="display: none;">스윙하세요!</div>
+    </main>
+
+    <footer class="footer">
+        <button class="control-btn pause-btn" onclick="togglePause()">
+            일시정지
+        </button>
+        <button class="home-btn" onclick="location.href='index.html'">
+            <span class="home-icon">⌂</span>
+        </button>
+    </footer>
+
+    <script>
+        let currentRound = 0;
+        let totalRounds = 20;
+        let measurementInterval;
+        let orbitAnimation;
+        let isPaused = false;
+
+        function togglePause() {
+            isPaused = !isPaused;
+            const pauseBtn = document.querySelector('.pause-btn');
+            pauseBtn.textContent = isPaused ? '재시작' : '일시정지';
+            
+            if (isPaused) {
+                // 현재 상태를 유지
+                clearTimeout(measurementInterval);
+            } else {
+                // 현재 회차부터 재시작
+                runMeasurementCycle();
+            }
+        }
+
+        function startMeasurement(rounds) {
+            totalRounds = rounds;
+            currentRound = 1;
+            isPaused = false;
+            document.querySelectorAll('.measure-btn').forEach(btn => btn.style.display = 'none');
+            document.getElementById('measurementDisplay').style.display = 'block';
+            runMeasurementCycle();
+        }
+
+        function runMeasurementCycle() {
+            if (currentRound > totalRounds) {
+                endMeasurement();
+                return;
+            }
+
+            if (isPaused) {
+                return;
+            }
+
+            // 회차 표시 업데이트
+            const roundText = `${currentRound}회차`;
+            document.getElementById('roundDisplay').textContent = roundText;
+            document.getElementById('orbitRoundDisplay').textContent = roundText;
+            
+            // 첫 화면: 큰 화면으로 속도와 거리 표시 (2초)
+            document.getElementById('measurementDisplay').style.display = 'block';
+            document.getElementById('orbitDisplay').style.display = 'none';
+            document.querySelector('.message').style.display = 'none';
+            
+            // 임시 데이터 생성 (실제로는 센서에서 받아올 값)
+            const speed = (35 + Math.random() * 8).toFixed(1);
+            const distance = (180 + Math.random() * 40).toFixed(1);
+            
+            // 큰 화면에 속도와 거리 표시
+            document.getElementById('speedDisplay').textContent = `${speed} m/s`;
+            document.getElementById('distanceDisplay').textContent = `${distance} m`;
+            
+            // 2초 후: 궤도 애니메이션 (2초)
+            measurementInterval = setTimeout(() => {
+                if (!isPaused && currentRound <= totalRounds) {
+                    document.getElementById('measurementDisplay').style.display = 'none';
+                    document.getElementById('orbitDisplay').style.display = 'block';
+                    document.getElementById('swingOrbit').style.display = 'block';
+                    startOrbitAnimation();
+                }
+            }, 2000);
+
+            // 4초 후: Ready 메시지 (1초)
+            measurementInterval = setTimeout(() => {
+                if (!isPaused && currentRound <= totalRounds) {
+                    document.getElementById('orbitDisplay').style.display = 'none';
+                    const messageEl = document.querySelector('.message');
+                    messageEl.style.display = 'block';
+                    messageEl.textContent = 'Ready';
+                    setTimeout(() => messageEl.classList.add('show'), 100);
+                }
+            }, 4000);
+
+            // 5초 후 다음 회차
+            measurementInterval = setTimeout(() => {
+                if (!isPaused && currentRound <= totalRounds) {
+                    document.querySelector('.message').classList.remove('show');
+                    currentRound++;
+                    runMeasurementCycle();
+                }
+            }, 5000);
+        }
+
+        function startOrbitAnimation() {
+            const svg = document.getElementById('swingOrbit');
+            svg.innerHTML = ''; // Clear previous path
+
+            // SVG 설정
+            const width = 300;
+            const height = 300;
+            const centerX = width / 2;
+            const centerY = height / 2;
+
+            // 백스윙 경로
+            const backswingPath = document.createElementNS("http://www.w3.org/2000/svg", "path");
+            backswingPath.setAttribute("d", `M ${centerX},${centerY} C ${centerX-50},${centerY-50} ${centerX-100},${centerY-100} ${centerX-120},${centerY-150}`);
+            backswingPath.setAttribute("stroke", "#4CAF50");
+            backswingPath.setAttribute("fill", "none");
+            backswingPath.setAttribute("stroke-width", "3");
+
+            // 다운스윙 경로
+            const downswingPath = document.createElementNS("http://www.w3.org/2000/svg", "path");
+            downswingPath.setAttribute("d", `M ${centerX-120},${centerY-150} C ${centerX-100},${centerY-50} ${centerX-50},${centerY+50} ${centerX+100},${centerY+50}`);
+            downswingPath.setAttribute("stroke", "#FFD700");
+            downswingPath.setAttribute("fill", "none");
+            downswingPath.setAttribute("stroke-width", "3");
+
+            // 임팩트 포인트
+            const impactPoint = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+            impactPoint.setAttribute("cx", centerX);
+            impactPoint.setAttribute("cy", centerY);
+            impactPoint.setAttribute("r", "5");
+            impactPoint.setAttribute("fill", "#FF4444");
+
+            svg.appendChild(backswingPath);
+            svg.appendChild(downswingPath);
+            svg.appendChild(impactPoint);
+
+            // 애니메이션 효과
+            let length = backswingPath.getTotalLength();
+            backswingPath.style.strokeDasharray = length;
+            backswingPath.style.strokeDashoffset = length;
+            backswingPath.style.animation = "drawPath 0.8s forwards";
+
+            length = downswingPath.getTotalLength();
+            downswingPath.style.strokeDasharray = length;
+            downswingPath.style.strokeDashoffset = length;
+            downswingPath.style.animation = "drawPath 0.8s forwards 0.8s";
+        }
+
+        function endMeasurement() {
+            document.querySelectorAll('.measure-btn').forEach(btn => btn.style.display = 'block');
+            document.getElementById('measurementDisplay').style.display = 'none';
+            document.getElementById('orbitDisplay').style.display = 'none';
+            document.querySelector('.message').style.display = 'none';
+            document.querySelector('.pause-btn').textContent = '일시정지';
+            currentRound = 0;
+            isPaused = false;
+        }
+    </script>
+
+    <style>
+        @keyframes drawPath {
+            to {
+                stroke-dashoffset: 0;
+            }
+        }
+    </style>
+</body>
+</html> 

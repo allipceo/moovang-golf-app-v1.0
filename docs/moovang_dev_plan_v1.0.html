@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>무방(MOOVANG) V1.0 개발계획서</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; line-height: 1.6; }
+        .header { text-align: center; border-bottom: 3px solid #007acc; padding-bottom: 15px; }
+        .section { margin: 25px 0; }
+        .subsection { margin: 15px 0 15px 20px; }
+        .timeline { background: #f5f5f5; padding: 15px; border-left: 4px solid #007acc; }
+        .feature { background: #e8f4fd; padding: 10px; margin: 10px 0; border-radius: 5px; }
+        .priority-high { color: #d73527; font-weight: bold; }
+        .priority-medium { color: #ff8c00; font-weight: bold; }
+        .priority-low { color: #228b22; font-weight: bold; }
+        table { width: 100%; border-collapse: collapse; margin: 15px 0; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background-color: #f2f2f2; }
+        .timestamp { color: #666; font-size: 0.9em; font-style: italic; }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>🏌️ 무방(MOOVANG) V1.0 개발계획서</h1>
+        <p><strong>골프 스윙 연습기 앱 개발 프로젝트</strong></p>
+        <p class="timestamp">작성일: [2025.01.10 13:45] | 작성자: 노팀장</p>
+    </div>
+
+    <div class="section">
+        <h2>📋 1. 프로젝트 개요</h2>
+        <div class="subsection">
+            <h3>1.1 프로젝트 목표</h3>
+            <ul>
+                <li><strong>핵심 목표:</strong> LED 및 자이로스코프를 활용한 골프 스윙 연습기와 연동되는 모바일 앱 개발</li>
+                <li><strong>주요 기능:</strong> 스윙 속도 측정, 스윙 궤도 분석, 임팩트 지점 최적화</li>
+                <li><strong>사용자 가치:</strong> 비거리 향상, 방향성 개선, 즐거운 골프 연습 경험</li>
+            </ul>
+        </div>
+        
+        <div class="subsection">
+            <h3>1.2 개발 범위</h3>
+            <ul>
+                <li><span class="priority-high">1차 목표:</span> 안드로이드/iOS 모바일 앱</li>
+                <li><span class="priority-medium">2차 목표:</span> PC용 앱 (추후 확장)</li>
+                <li><span class="priority-low">3차 목표:</span> 웹 기반 분석 도구</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>🎯 2. 핵심 기능 정의</h2>
+        
+        <div class="feature">
+            <h3>2.1 속도 측정 서비스</h3>
+            <ul>
+                <li>스윙 전 과정에서 구간별 스윙 스피드 측정</li>
+                <li>속도별 색상 변동 (5단계: 빨강→노랑→초록→파랑→보라)</li>
+                <li>최고 스피드와 스피드 구간 실시간 인식</li>
+            </ul>
+        </div>
+
+        <div class="feature">
+            <h3>2.2 임팩트 존 서비스</h3>
+            <ul>
+                <li>자이로 센서 기반 최저점 감지</li>
+                <li>임팩트 지점에서 음향 피드백</li>
+                <li>최고 스피드와 임팩트 지점 싱크 여부 확인</li>
+            </ul>
+        </div>
+
+        <div class="feature">
+            <h3>2.3 스윙 궤도 서비스</h3>
+            <ul>
+                <li>3차원 스윙 궤도 추적 및 시각화</li>
+                <li>기준 궤도 설정 및 비교 분석</li>
+                <li>개인별 최적 스윙 궤도 학습</li>
+            </ul>
+        </div>
+
+        <div class="feature">
+            <h3>2.4 데이터 관리 서비스</h3>
+            <ul>
+                <li>블루투스 연동을 통한 실시간 데이터 수신</li>
+                <li>연습 기록 누적 및 히스토리 관리</li>
+                <li>맞춤형 코칭 데이터 제공</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>🛠️ 3. 기술 스택</h2>
+        <table>
+            <tr>
+                <th>구분</th>
+                <th>기술</th>
+                <th>선택 이유</th>
+            </tr>
+            <tr>
+                <td>개발 플랫폼</td>
+                <td>React Native</td>
+                <td>크로스 플랫폼 지원, 단일 코드베이스</td>
+            </tr>
+            <tr>
+                <td>데이터베이스</td>
+                <td>SQLite (로컬) + Firebase (클라우드)</td>
+                <td>오프라인 지원 + 클라우드 백업</td>
+            </tr>
+            <tr>
+                <td>블루투스 통신</td>
+                <td>React Native Bluetooth</td>
+                <td>하드웨어 센서 연동</td>
+            </tr>
+            <tr>
+                <td>차트/그래프</td>
+                <td>React Native Chart Kit</td>
+                <td>스윙 데이터 시각화</td>
+            </tr>
+            <tr>
+                <td>3D 렌더링</td>
+                <td>Three.js</td>
+                <td>스윙 궤도 3차원 표현</td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="section">
+        <h2>📅 4. 개발 일정</h2>
+        
+        <div class="timeline">
+            <h3>Phase 1: 기획 및 설계 (1-2주)</h3>
+            <ul>
+                <li>요구사항 분석 완료</li>
+                <li>UI/UX 설계</li>
+                <li>시스템 아키텍처 설계</li>
+                <li>개발 환경 구축</li>
+            </ul>
+        </div>
+
+        <div class="timeline">
+            <h3>Phase 2: 핵심 모듈 개발 (3-4주)</h3>
+            <ul>
+                <li>블루투스 연동 모듈</li>
+                <li>데이터 수신 및 처리 모듈</li>
+                <li>기본 UI 컴포넌트</li>
+                <li>데이터베이스 구조</li>
+            </ul>
+        </div>
+
+        <div class="timeline">
+            <h3>Phase 3: 기능 구현 (4-5주)</h3>
+            <ul>
+                <li>스윙 측정 화면</li>
+                <li>데이터 분석 화면</li>
+                <li>히스토리 관리</li>
+                <li>설정 관리</li>
+            </ul>
+        </div>
+
+        <div class="timeline">
+            <h3>Phase 4: 테스트 및 배포 (2주)</h3>
+            <ul>
+                <li>단위 테스트</li>
+                <li>통합 테스트</li>
+                <li>사용자 테스트</li>
+                <li>앱스토어 배포</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>📱 5. UI/UX 설계 방향</h2>
+        <div class="subsection">
+            <h3>5.1 화면 구성</h3>
+            <ul>
+                <li><strong>초기화면:</strong> 앱 로딩 및 블루투스 연결 상태</li>
+                <li><strong>메뉴화면:</strong> 환경설정, 스윙측정, 스윙분석 메뉴</li>
+                <li><strong>스윙측정:</strong> 실시간 측정 및 결과 표시</li>
+                <li><strong>스윙분석:</strong> 금일분석, 과거분석 데이터 시각화</li>
+                <li><strong>환경설정:</strong> 블루투스 연결, 개인정보, 프로그램 설명</li>
+            </ul>
+        </div>
+
+        <div class="subsection">
+            <h3>5.2 디자인 원칙</h3>
+            <ul>
+                <li>직관적이고 간단한 인터페이스</li>
+                <li>골프 테마 색상 (그린, 화이트, 골드)</li>
+                <li>대형 버튼으로 야외 사용성 확보</li>
+                <li>실시간 피드백 중심의 UX</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>🎮 6. 개발 모듈 구조</h2>
+        <table>
+            <tr>
+                <th>모듈명</th>
+                <th>주요 기능</th>
+                <th>우선순위</th>
+            </tr>
+            <tr>
+                <td>BluetoothManager</td>
+                <td>하드웨어 연결 및 데이터 수신</td>
+                <td class="priority-high">높음</td>
+            </tr>
+            <tr>
+                <td>DataProcessor</td>
+                <td>센서 데이터 분석 및 처리</td>
+                <td class="priority-high">높음</td>
+            </tr>
+            <tr>
+                <td>SwingAnalyzer</td>
+                <td>스윙 궤도 및 속도 분석</td>
+                <td class="priority-high">높음</td>
+            </tr>
+            <tr>
+                <td>DatabaseManager</td>
+                <td>데이터 저장 및 히스토리 관리</td>
+                <td class="priority-medium">중간</td>
+            </tr>
+            <tr>
+                <td>UIComponents</td>
+                <td>차트, 그래프, 3D 렌더링</td>
+                <td class="priority-medium">중간</td>
+            </tr>
+            <tr>
+                <td>ReportGenerator</td>
+                <td>분석 리포트 생성</td>
+                <td class="priority-low">낮음</td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="section">
+        <h2>✅ 7. 검증 계획</h2>
+        <div class="subsection">
+            <h3>7.1 단계별 검증</h3>
+            <ul>
+                <li><strong>모듈 검증:</strong> 각 모듈별 단위 테스트</li>
+                <li><strong>통합 검증:</strong> 모듈 간 연동 테스트</li>
+                <li><strong>성능 검증:</strong> 실시간 데이터 처리 속도</li>
+                <li><strong>사용성 검증:</strong> 실제 골퍼 테스트</li>
+            </ul>
+        </div>
+
+        <div class="subsection">
+            <h3>7.2 품질 기준</h3>
+            <ul>
+                <li>블루투스 연결 성공률 95% 이상</li>
+                <li>데이터 처리 지연시간 100ms 이하</li>
+                <li>앱 크래시율 1% 이하</li>
+                <li>사용자 만족도 4.0/5.0 이상</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>📊 8. 위험 요소 및 대응 방안</h2>
+        <table>
+            <tr>
+                <th>위험 요소</th>
+                <th>확률</th>
+                <th>대응 방안</th>
+            </tr>
+            <tr>
+                <td>블루투스 호환성 문제</td>
+                <td>중간</td>
+                <td>다양한 기기 테스트, 대체 통신 방법 준비</td>
+            </tr>
+            <tr>
+                <td>센서 데이터 정확도</td>
+                <td>중간</td>
+                <td>캘리브레이션 기능, 필터링 알고리즘</td>
+            </tr>
+            <tr>
+                <td>배터리 소모 과다</td>
+                <td>높음</td>
+                <td>최적화, 절전 모드 구현</td>
+            </tr>
+            <tr>
+                <td>플랫폼별 성능 차이</td>
+                <td>낮음</td>
+                <td>크로스 플랫폼 테스트 강화</td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="section">
+        <h2>🎯 9. 성공 지표</h2>
+        <ul>
+            <li><strong>기술적 목표:</strong> 모든 핵심 기능 정상 동작</li>
+            <li><strong>사용성 목표:</strong> 골프 초보자도 쉽게 사용 가능</li>
+            <li><strong>성능 목표:</strong> 실시간 피드백 지연 최소화</li>
+            <li><strong>만족도 목표:</strong> 베타 테스터 80% 이상 만족</li>
+        </ul>
+    </div>
+
+    <hr>
+    <footer>
+        <p class="timestamp"><em>무방(MOOVANG) V1.0 개발계획서 - [2025.01.10 13:45] 노팀장 작성</em></p>
+        <p><strong>다음 단계:</strong> 조대표님 검토 후 개발 착수</p>
+    </footer>
+</body>
+</html>

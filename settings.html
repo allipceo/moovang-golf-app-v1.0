@@ -1,0 +1,698 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>무방 - 환경설정</title>
+    <style>
+        :root {
+            --primary-color: #2d5016;
+            --success-color: #28a745;
+            --warning-color: #ffc107;
+            --danger-color: #dc3545;
+            --info-color: #007acc;
+            --gray-color: #999;
+            --shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            background-color: #f5f5f5;
+            color: #333;
+        }
+
+        header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .back-btn {
+            color: white;
+            text-decoration: none;
+            font-size: 1.5rem;
+        }
+
+        .save-btn {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        .section {
+            background: white;
+            margin: 1rem;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: var(--shadow);
+        }
+
+        .section h2 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #555;
+        }
+
+        .form-control {
+            width: 100%;
+            height: 44px;
+            padding: 0.5rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary-color);
+        }
+
+        .form-control.error {
+            border-color: var(--danger-color);
+        }
+
+        .error-message {
+            color: var(--danger-color);
+            font-size: 0.875rem;
+            margin-top: 0.25rem;
+        }
+
+        .radio-group {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .radio-group label {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            cursor: pointer;
+        }
+
+        .slider-container {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .slider-container input[type="range"] {
+            flex: 1;
+        }
+
+        .slider-value {
+            min-width: 3rem;
+            text-align: right;
+        }
+
+        .bluetooth-status {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+            padding: 0.5rem;
+            border-radius: 4px;
+        }
+
+        .bluetooth-status.connected {
+            background-color: rgba(40, 167, 69, 0.1);
+            color: var(--success-color);
+        }
+
+        .bluetooth-status.scanning {
+            background-color: rgba(255, 193, 7, 0.1);
+            color: var(--warning-color);
+        }
+
+        .bluetooth-status.disconnected {
+            background-color: rgba(220, 53, 69, 0.1);
+            color: var(--danger-color);
+        }
+
+        .bluetooth-status.connecting {
+            background-color: rgba(0, 122, 204, 0.1);
+            color: var(--info-color);
+        }
+
+        .device-list {
+            list-style: none;
+        }
+
+        .device-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            margin-bottom: 0.5rem;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .device-item:hover {
+            border-color: var(--primary-color);
+            background-color: rgba(45, 80, 22, 0.05);
+        }
+
+        .device-item.selected {
+            border-color: var(--primary-color);
+            background-color: rgba(45, 80, 22, 0.1);
+        }
+
+        .signal-strength {
+            display: flex;
+            gap: 2px;
+        }
+
+        .signal-bar {
+            width: 4px;
+            height: 12px;
+            background-color: #ddd;
+            border-radius: 2px;
+        }
+
+        .signal-bar.active {
+            background-color: var(--primary-color);
+        }
+
+        .btn {
+            width: 100%;
+            height: 44px;
+            border: none;
+            border-radius: 4px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .btn-primary {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background-color: #1e3610;
+        }
+
+        .btn-secondary {
+            background-color: #f8f9fa;
+            border: 1px solid #ddd;
+            color: #333;
+        }
+
+        .btn-secondary:hover {
+            background-color: #e9ecef;
+        }
+
+        .toast {
+            position: fixed;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 1rem 2rem;
+            border-radius: 4px;
+            color: white;
+            font-weight: bold;
+            opacity: 0;
+            transition: opacity 0.3s;
+            z-index: 1000;
+        }
+
+        .toast.success {
+            background-color: var(--success-color);
+        }
+
+        .toast.error {
+            background-color: var(--danger-color);
+        }
+
+        .toast.show {
+            opacity: 1;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: auto 1fr;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .info-grid dt {
+            color: #666;
+            font-weight: bold;
+        }
+
+        .info-grid dd {
+            margin: 0;
+        }
+
+        .bottom-buttons {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        @media (max-width: 768px) {
+            .section {
+                margin: 0.5rem;
+                padding: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="index.html" class="back-btn">←</a>
+        <h1>환경설정</h1>
+        <button class="save-btn" onclick="saveAllSettings()">✓</button>
+    </header>
+
+    <div class="section">
+        <h2>📡 블루투스 연결</h2>
+        <div id="bluetooth-status" class="bluetooth-status disconnected">
+            <span class="status-icon">📡</span>
+            <span class="status-text">연결된 기기 없음</span>
+        </div>
+        <div id="device-list" class="device-list">
+            <!-- 기기 목록은 JavaScript로 동적 생성 -->
+        </div>
+        <button class="btn btn-primary" onclick="scanDevices()" id="scan-button">
+            기기 검색
+        </button>
+    </div>
+
+    <div class="section">
+        <h2>👤 개인정보</h2>
+        <form id="profile-form" onsubmit="return false;">
+            <div class="form-group">
+                <label for="name">이름</label>
+                <input type="text" id="name" class="form-control" placeholder="2자 이상 입력">
+                <div class="error-message"></div>
+            </div>
+
+            <div class="form-group">
+                <label>성별</label>
+                <div class="radio-group">
+                    <label>
+                        <input type="radio" name="gender" value="male" checked>
+                        남성
+                    </label>
+                    <label>
+                        <input type="radio" name="gender" value="female">
+                        여성
+                    </label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="age">나이</label>
+                <input type="number" id="age" class="form-control" min="10" max="99" placeholder="10-99세">
+                <div class="error-message"></div>
+            </div>
+
+            <div class="form-group">
+                <label for="handicap">핸디캡</label>
+                <div class="slider-container">
+                    <input type="range" id="handicap" min="0" max="36" value="18">
+                    <span class="slider-value">18</span>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="main-club">주 사용 클럽</label>
+                <select id="main-club" class="form-control">
+                    <option value="driver">드라이버</option>
+                    <option value="iron">아이언</option>
+                    <option value="hybrid">하이브리드</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="target-speed">목표 스윙 속도 (m/s)</label>
+                <div class="slider-container">
+                    <input type="range" id="target-speed" min="20" max="60" value="40">
+                    <span class="slider-value">40</span>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="weekly-practice">주간 연습 횟수</label>
+                <select id="weekly-practice" class="form-control">
+                    <option value="1">1회</option>
+                    <option value="2">2회</option>
+                    <option value="3" selected>3회</option>
+                    <option value="4">4회</option>
+                    <option value="5">5회</option>
+                    <option value="6">6회</option>
+                    <option value="7">7회</option>
+                </select>
+            </div>
+        </form>
+    </div>
+
+    <div class="section">
+        <h2>ℹ️ 프로그램 정보</h2>
+        <dl class="info-grid">
+            <dt>앱 이름</dt>
+            <dd>무방(MOOVANG)</dd>
+            
+            <dt>버전</dt>
+            <dd>V1.0</dd>
+            
+            <dt>빌드</dt>
+            <dd>2025.01.10</dd>
+            
+            <dt>개발사</dt>
+            <dd>휴먼써클</dd>
+        </dl>
+
+        <h3>센서 정보</h3>
+        <dl class="info-grid">
+            <dt>샘플링 주파수</dt>
+            <dd>100Hz</dd>
+            
+            <dt>연결 방식</dt>
+            <dd>블루투스 5.0</dd>
+            
+            <dt>배터리 수명</dt>
+            <dd>약 8시간</dd>
+            
+            <dt>측정 범위</dt>
+            <dd>±2000 deg/s</dd>
+        </dl>
+
+        <h3>고객 지원</h3>
+        <dl class="info-grid">
+            <dt>이메일</dt>
+            <dd>support@humancircle.co.kr</dd>
+            
+            <dt>홈페이지</dt>
+            <dd>www.moovang.com</dd>
+        </dl>
+
+        <div class="bottom-buttons">
+            <button class="btn btn-secondary" onclick="resetSettings()">초기화</button>
+            <button class="btn btn-secondary" onclick="exportSettings()">내보내기</button>
+        </div>
+    </div>
+
+    <div id="toast" class="toast"></div>
+
+    <script>
+        // 전역 변수
+        let bluetoothStatus = 'disconnected';
+        let selectedDevice = null;
+        let scanInterval = null;
+
+        // 초기화
+        document.addEventListener('DOMContentLoaded', () => {
+            loadSettings();
+            setupEventListeners();
+        });
+
+        // 이벤트 리스너 설정
+        function setupEventListeners() {
+            // 슬라이더 값 실시간 업데이트
+            document.querySelectorAll('input[type="range"]').forEach(slider => {
+                const valueDisplay = slider.nextElementSibling;
+                slider.addEventListener('input', () => {
+                    valueDisplay.textContent = slider.value;
+                });
+            });
+
+            // 폼 입력값 변경 시 자동 검증
+            document.getElementById('name').addEventListener('input', () => {
+                validateField('name');
+            });
+
+            document.getElementById('age').addEventListener('input', () => {
+                validateField('age');
+            });
+        }
+
+        // 설정 로드
+        function loadSettings() {
+            const settings = JSON.parse(localStorage.getItem('userSettings') || '{}');
+            
+            if (settings.profile) {
+                document.getElementById('name').value = settings.profile.name || '';
+                document.querySelector(`input[name="gender"][value="${settings.profile.gender || 'male'}"]`).checked = true;
+                document.getElementById('age').value = settings.profile.age || '';
+                document.getElementById('handicap').value = settings.profile.handicap || 18;
+                document.querySelector('#handicap + .slider-value').textContent = settings.profile.handicap || 18;
+                document.getElementById('main-club').value = settings.profile.mainClub || 'driver';
+            }
+
+            if (settings.goals) {
+                document.getElementById('target-speed').value = settings.goals.targetSpeed || 40;
+                document.querySelector('#target-speed + .slider-value').textContent = settings.goals.targetSpeed || 40;
+                document.getElementById('weekly-practice').value = settings.goals.weeklyPractice || 3;
+            }
+        }
+
+        // 설정 저장
+        function saveAllSettings() {
+            if (!validateForm()) {
+                showToast('입력값을 확인해주세요', 'error');
+                return;
+            }
+
+            const settings = {
+                profile: {
+                    name: document.getElementById('name').value,
+                    gender: document.querySelector('input[name="gender"]:checked').value,
+                    age: parseInt(document.getElementById('age').value),
+                    handicap: parseInt(document.getElementById('handicap').value),
+                    mainClub: document.getElementById('main-club').value
+                },
+                goals: {
+                    targetSpeed: parseInt(document.getElementById('target-speed').value),
+                    weeklyPractice: parseInt(document.getElementById('weekly-practice').value),
+                    notifications: true
+                },
+                bluetooth: {
+                    lastConnectedDevice: selectedDevice,
+                    isConnected: bluetoothStatus === 'connected'
+                },
+                system: {
+                    theme: 'default',
+                    language: 'ko',
+                    soundEnabled: true,
+                    vibrationEnabled: true
+                },
+                meta: {
+                    lastUpdated: new Date().toISOString(),
+                    version: '1.0'
+                }
+            };
+
+            localStorage.setItem('userSettings', JSON.stringify(settings));
+            showToast('설정이 저장되었습니다', 'success');
+        }
+
+        // 설정 초기화
+        function resetSettings() {
+            if (confirm('모든 설정을 초기화하시겠습니까?')) {
+                localStorage.removeItem('userSettings');
+                location.reload();
+            }
+        }
+
+        // 설정 내보내기
+        function exportSettings() {
+            const settings = localStorage.getItem('userSettings');
+            if (settings) {
+                const blob = new Blob([settings], { type: 'application/json' });
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = 'moovang-settings.json';
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+                URL.revokeObjectURL(url);
+            }
+        }
+
+        // 폼 검증
+        function validateForm() {
+            const nameValid = validateField('name');
+            const ageValid = validateField('age');
+            return nameValid && ageValid;
+        }
+
+        function validateField(fieldName) {
+            const field = document.getElementById(fieldName);
+            const errorElement = field.nextElementSibling;
+            let isValid = true;
+            let errorMessage = '';
+
+            switch (fieldName) {
+                case 'name':
+                    if (field.value.length < 2) {
+                        isValid = false;
+                        errorMessage = '이름은 2자 이상 입력해주세요';
+                    } else if (!/^[가-힣a-zA-Z0-9\s]+$/.test(field.value)) {
+                        isValid = false;
+                        errorMessage = '올바른 이름을 입력해주세요';
+                    }
+                    break;
+
+                case 'age':
+                    const age = parseInt(field.value);
+                    if (isNaN(age) || age < 10 || age > 99) {
+                        isValid = false;
+                        errorMessage = '나이는 10-99 사이로 입력해주세요';
+                    }
+                    break;
+            }
+
+            field.classList.toggle('error', !isValid);
+            errorElement.textContent = errorMessage;
+            return isValid;
+        }
+
+        // 블루투스 관련 함수
+        function scanDevices() {
+            updateBluetoothStatus('scanning');
+            document.getElementById('scan-button').disabled = true;
+
+            // 기존 검색 중지
+            if (scanInterval) {
+                clearInterval(scanInterval);
+            }
+
+            // 가상 기기 목록
+            const availableDevices = [
+                { name: '무방 센서 01', signal: 5, battery: 85 },
+                { name: '무방 센서 02', signal: 3, battery: 92 },
+                { name: '무방 센서 03', signal: 2, battery: 67 }
+            ];
+
+            // 검색 시뮬레이션
+            let foundDevices = [];
+            let scanCount = 0;
+            
+            scanInterval = setInterval(() => {
+                scanCount++;
+                
+                // 랜덤하게 기기 발견
+                const newDevice = availableDevices[Math.floor(Math.random() * availableDevices.length)];
+                if (!foundDevices.find(d => d.name === newDevice.name)) {
+                    foundDevices.push(newDevice);
+                    updateDeviceList(foundDevices);
+                }
+
+                // 3초 후 검색 종료
+                if (scanCount >= 3) {
+                    clearInterval(scanInterval);
+                    document.getElementById('scan-button').disabled = false;
+                    updateBluetoothStatus('disconnected');
+                }
+            }, 1000);
+        }
+
+        function updateDeviceList(devices) {
+            const listElement = document.getElementById('device-list');
+            listElement.innerHTML = devices.map(device => `
+                <div class="device-item ${selectedDevice === device.name ? 'selected' : ''}" 
+                     onclick="connectDevice('${device.name}')">
+                    <div>
+                        <div>${device.name}</div>
+                        <div style="color: #666">배터리: ${device.battery}%</div>
+                    </div>
+                    <div class="signal-strength">
+                        ${Array.from({length: 5}, (_, i) => `
+                            <div class="signal-bar ${i < device.signal ? 'active' : ''}"></div>
+                        `).join('')}
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function connectDevice(deviceName) {
+            updateBluetoothStatus('connecting');
+            
+            // 연결 시뮬레이션
+            setTimeout(() => {
+                if (Math.random() > 0.1) { // 90% 성공률
+                    selectedDevice = deviceName;
+                    updateBluetoothStatus('connected');
+                    showToast(`${deviceName}에 연결되었습니다`, 'success');
+                    // 진동 피드백
+                    if ('vibrate' in navigator) {
+                        navigator.vibrate(200);
+                    }
+                } else {
+                    updateBluetoothStatus('disconnected');
+                    showToast('연결에 실패했습니다', 'error');
+                }
+            }, 2000);
+        }
+
+        function updateBluetoothStatus(status) {
+            bluetoothStatus = status;
+            const statusElement = document.getElementById('bluetooth-status');
+            const statusText = document.querySelector('.status-text');
+            const statusIcon = document.querySelector('.status-icon');
+
+            statusElement.className = `bluetooth-status ${status}`;
+
+            switch (status) {
+                case 'connected':
+                    statusIcon.textContent = '📶';
+                    statusText.textContent = `${selectedDevice} 연결됨`;
+                    break;
+                case 'scanning':
+                    statusIcon.textContent = '🔍';
+                    statusText.textContent = '기기 검색 중...';
+                    break;
+                case 'connecting':
+                    statusIcon.textContent = '⏳';
+                    statusText.textContent = '연결 시도 중...';
+                    break;
+                case 'disconnected':
+                    statusIcon.textContent = '📡';
+                    statusText.textContent = '연결된 기기 없음';
+                    break;
+            }
+        }
+
+        // 토스트 메시지
+        function showToast(message, type = 'success') {
+            const toast = document.getElementById('toast');
+            toast.textContent = message;
+            toast.className = `toast ${type} show`;
+            
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 3000);
+        }
+    </script>
+</body>
+</html> 

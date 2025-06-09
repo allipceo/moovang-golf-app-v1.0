@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>서대리 코딩 지침서 - analysis.html</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; line-height: 1.6; }
+        .header { background: #007acc; color: white; padding: 15px; border-radius: 5px; }
+        .section { margin: 20px 0; padding: 15px; border: 1px solid #ddd; border-radius: 5px; }
+        .important { background: #fff3cd; border-color: #ffeaa7; }
+        .feature-box { background: #e8f5e8; padding: 15px; border-radius: 5px; margin: 10px 0; }
+        .code-block { background: #f8f9fa; padding: 15px; border-radius: 5px; font-family: monospace; }
+        .chart-spec { background: #f0f8f0; padding: 15px; border-left: 4px solid #2d5016; margin: 10px 0; }
+        .warning { background: #f8d7da; border-color: #f5c6cb; color: #721c24; padding: 10px; border-radius: 3px; }
+        table { width: 100%; border-collapse: collapse; margin: 10px 0; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: center; }
+        th { background-color: #2d5016; color: white; }
+        ul li { margin: 5px 0; }
+        .tab-demo { background: #e3f2fd; padding: 10px; margin: 5px 0; border-radius: 3px; }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>📊 서대리 코딩 지침서</h1>
+        <h2>analysis.html - 스윙 분석 페이지</h2>
+        <p><strong>작성자:</strong> 노팀장 | <strong>작성일:</strong> [2025.01.10 16:30]</p>
+    </div>
+
+    <div class="section important">
+        <h2>⚠️ 필수 준수 사항</h2>
+        <ul>
+            <li><strong>파일 위치:</strong> Z:\html\analysis.html</li>
+            <li><strong>데이터 소스:</strong> localStorage + swing_dataset.js</li>
+            <li><strong>핵심 기능:</strong> 금일분석 + 과거분석 + 차트/그래프</li>
+            <li><strong>시각화:</strong> Chart.js 또는 Canvas 활용</li>
+            <li><strong>탭 구조:</strong> 2개 탭 (금일/과거) 명확히 구분</li>
+            <li><strong>모바일 최적화:</strong> 스와이프 및 터치 지원</li>
+        </ul>
+    </div>
+
+    <div class="section">
+        <h2>🎯 페이지 핵심 기능</h2>
+        
+        <div class="feature-box">
+            <h3>1. 금일 분석 (Today Analysis)</h3>
+            <ul>
+                <li><strong>오늘 세션 요약:</strong> 총 스윙 수, 평균 속도, 최고 기록</li>
+                <li><strong>속도 분포 차트:</strong> 20회 스윙 속도 라인차트</li>
+                <li><strong>궤도 분석:</strong> 스윙 타입별 분포 (pie chart)</li>
+                <li><strong>향상도 표시:</strong> 세션 초반 vs 후반 비교</li>
+                <li><strong>개별 스윙 리뷰:</strong> 터치하면 상세 정보</li>
+            </ul>
+        </div>
+
+        <div class="feature-box">
+            <h3>2. 과거 분석 (History Analysis)</h3>
+            <ul>
+                <li><strong>주간 추세:</strong> 최근 7일간 평균 속도 변화</li>
+                <li><strong>월간 통계:</strong> 월별 연습 횟수 및 향상도</li>
+                <li><strong>개인 기록:</strong> 최고 속도, 최장 연습 등</li>
+                <li><strong>목표 달성률:</strong> 설정 목표 대비 달성도</li>
+                <li><strong>추천 사항:</strong> AI 기반 연습 팁</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>📱 화면 구성 요구사항</h2>
+        
+        <h3>1. 헤더 영역</h3>
+        <ul>
+            <li>페이지 제목: "스윙 분석"</li>
+            <li>홈 버튼 (←) - index.html로 이동</li>
+            <li>날짜 선택기 (금일/과거 전환)</li>
+            <li>데이터 새로고침 버튼</li>
+        </ul>
+
+        <h3>2. 탭 네비게이션</h3>
+        <div class="tab-demo">
+            <p><strong>탭 1: 금일분석</strong> | 탭 2: 과거분석</p>
+            <p>• 활성 탭은 골프 그린색 (#2d5016)</p>
+            <p>• 비활성 탭은 회색 (#999)</p>
+            <p>• 터치/클릭으로 전환, 스와이프 지원</p>
+        </div>
+
+        <h3>3. 메인 컨텐츠 영역</h3>
+        <table>
+            <tr>
+                <th>섹션</th>
+                <th>금일분석</th>
+                <th>과거분석</th>
+            </tr>
+            <tr>
+                <td>요약 카드</td>
+                <td>오늘 통계 (3-4개 지표)</td>
+                <td>전체 기간 통계</td>
+            </tr>
+            <tr>
+                <td>주 차트</td>
+                <td>속도 라인차트 (20회)</td>
+                <td>주간 추세 차트</td>
+            </tr>
+            <tr>
+                <td>보조 차트</td>
+                <td>궤도 분포 파이차트</td>
+                <td>월간 연습량 바차트</td>
+            </tr>
+            <tr>
+                <td>상세 정보</td>
+                <td>개별 스윙 리스트</td>
+                <td>개인 기록 및 목표</td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="section">
+        <h2>📊 차트 및 그래프 명세</h2>
+        
+        <div class="chart-spec">
+            <h3>1. 속도 라인차트 (금일분석)</h3>
+            <ul>
+                <li><strong>X축:</strong> 스윙 번호 (1-20)</li>
+                <li><strong>Y축:</strong> 속도 (m/s)</li>
+                <li><strong>선 색상:</strong> 골프 그린 (#2d5016)</li>
+                <li><strong>포인트:</strong> 최고 속도는 골드색 강조</li>
+                <li><strong>배경:</strong> 속도 구간별 색상 영역</li>
+            </ul>
+        </div>
+
+        <div class="chart-spec">
+            <h3>2. 궤도 분포 파이차트</h3>
+            <ul>
+                <li><strong>데이터:</strong> 스윙 타입별 개수</li>
+                <li><strong>색상:</strong> 타입별 고유색 (데이터셋과 일치)</li>
+                <li><strong>라벨:</strong> 타입명 + 비율</li>
+                <li><strong>인터랙션:</strong> 터치시 상세 정보</li>
+            </ul>
+        </div>
+
+        <div class="chart-spec">
+            <h3>3. 주간 추세 차트 (과거분석)</h3>
+            <ul>
+                <li><strong>X축:</strong> 날짜 (최근 7일)</li>
+                <li><strong>Y축:</strong> 평균 속도</li>
+                <li><strong>추세선:</strong> 향상/하락 표시</li>
+                <li><strong>목표선:</strong> 설정 목표 속도 점선</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>⚙️ 데이터 구조 및 처리</h2>
+        
+        <h3>1. localStorage 데이터 스키마</h3>
+        <div class="code-block">
+            <pre>
+// 세션 기록 저장 구조
+const sessionHistory = {
+    "2025-01-10": {
+        sessions: [
+            {
+                timestamp: "2025-01-10T16:30:00Z",
+                totalSwings: 20,
+                averageSpeed: 37.8,
+                maxSpeed: 45.0,
+                swingTypes: {
+                    "standard": 8,
+                    "inside-out": 5,
+                    "outside-in": 3,
+                    "upright": 2,
+                    "flat": 2
+                },
+                swingData: [...] // 개별 스윙 결과
+            }
+        ]
+    }
+};
+
+// 개인 기록
+const personalRecords = {
+    maxSpeed: 45.0,
+    maxSpeedDate: "2025-01-10",
+    totalSessions: 15,
+    totalSwings: 300,
+    averageImprovement: 2.5,
+    goals: {
+        targetSpeed: 42.0,
+        targetSessions: 20
+    }
+};
+            </pre>
+        </div>
+
+        <h3>2. 데이터 처리 함수</h3>
+        <div class="code-block">
+            <pre>
+// 필수 구현 함수들
+function loadTodayData()           // 오늘 세션 데이터 로드
+function loadHistoryData()         // 과거 기록 로드  
+function calculateStatistics()     // 통계 계산
+function generateCharts()          // 차트 생성
+function updatePersonalRecords()   // 개인 기록 업데이트
+function exportData()              // 데이터 내보내기
+            </pre>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>🎨 UI/UX 디자인 가이드</h2>
+        
+        <h3>카드형 레이아웃</h3>
+        <ul>
+            <li><strong>요약 카드:</strong> 4개 주요 지표 (2x2 그리드)</li>
+            <li><strong>차트 카드:</strong> 개별 차트를 카드로 감싸기</li>
+            <li><strong>그림자 효과:</strong> 깊이감 있는 디자인</li>
+            <li><strong>둥근 모서리:</strong> 8px border-radius</li>
+        </ul>
+
+        <h3>색상 시스템</h3>
+        <table>
+            <tr>
+                <th>용도</th>
+                <th>색상</th>
+                <th>적용</th>
+            </tr>
+            <tr>
+                <td>주 색상</td>
+                <td>#2d5016</td>
+                <td>헤더, 활성 탭, 주요 버튼</td>
+            </tr>
+            <tr>
+                <td>강조 색상</td>
+                <td>#d4af37</td>
+                <td>최고 기록, 중요 지표</td>
+            </tr>
+            <tr>
+                <td>성공</td>
+                <td>#28a745</td>
+                <td>목표 달성, 향상 표시</td>
+            </tr>
+            <tr>
+                <td>주의</td>
+                <td>#ffc107</td>
+                <td>목표 근접, 주의 필요</td>
+            </tr>
+            <tr>
+                <td>위험</td>
+                <td>#dc3545</td>
+                <td>목표 미달, 하락</td>
+            </tr>
+        </table>
+
+        <h3>모바일 최적화</h3>
+        <ul>
+            <li><strong>차트 크기:</strong> 화면폭의 90% 사용</li>
+            <li><strong>스크롤:</strong> 세로 스크롤로 모든 정보 접근</li>
+            <li><strong>터치:</strong> 차트 요소 터치로 상세 정보</li>
+            <li><strong>스와이프:</strong> 탭 간 스와이프 전환</li>
+        </ul>
+    </div>
+
+    <div class="section">
+        <h2>📈 구현할 분석 기능</h2>
+        
+        <h3>금일분석 세부사항</h3>
+        <div class="feature-box">
+            <h4>요약 통계</h4>
+            <ul>
+                <li>총 스윙 수: measurement.html에서 완료된 횟수</li>
+                <li>평균 속도: 20회 평균값</li>
+                <li>최고 기록: 개인 최고 대비 오늘 최고</li>
+                <li>향상도: 첫 5회 평균 vs 마지막 5회 평균</li>
+            </ul>
+        </div>
+
+        <div class="feature-box">
+            <h4>상세 분석</h4>
+            <ul>
+                <li>스윙별 상세 리스트 (터치로 확장)</li>
+                <li>속도 분포 히스토그램</li>
+                <li>일관성 지표 (표준편차)</li>
+                <li>추천 연습 방향</li>
+            </ul>
+        </div>
+
+        <h3>과거분석 세부사항</h3>
+        <div class="feature-box">
+            <h4>추세 분석</h4>
+            <ul>
+                <li>주간 평균 속도 변화</li>
+                <li>연습 빈도 패턴</li>
+                <li>월별 향상률</li>
+                <li>장기 목표 달성률</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>🎯 차트 라이브러리 활용</h2>
+        
+        <div class="code-block">
+            <h3>Chart.js 구현 예시</h3>
+            <pre>
+// 속도 라인차트
+const speedChart = new Chart(ctx, {
+    type: 'line',
+    data: {
+        labels: Array.from({length: 20}, (_, i) => i + 1),
+        datasets: [{
+            label: '스윙 속도',
+            data: swingData.map(s => s.analysis.driverSpeed),
+            borderColor: '#2d5016',
+            backgroundColor: 'rgba(45, 80, 22, 0.1)',
+            tension: 0.3
+        }]
+    },
+    options: {
+        responsive: true,
+        plugins: {
+            title: {
+                display: true,
+                text: '오늘 스윙 속도 변화'
+            }
+        },
+        scales: {
+            y: {
+                min: 25,
+                max: 50,
+                title: {
+                    display: true,
+                    text: '속도 (m/s)'
+                }
+            }
+        }
+    }
+});
+
+// 궤도 분포 파이차트  
+const trajectoryChart = new Chart(ctx2, {
+    type: 'doughnut',
+    data: {
+        labels: ['표준', '인사이드아웃', '아웃사이드인', '업라이트', '플랫'],
+        datasets: [{
+            data: Object.values(swingTypeCount),
+            backgroundColor: [
+                '#2d5016', '#d4af37', '#007acc', 
+                '#28a745', '#ffc107'
+            ]
+        }]
+    }
+});
+            </pre>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>📱 사용자 상호작용</h2>
+        
+        <h3>탭 전환</h3>
+        <div class="code-block">
+            <pre>
+function switchTab(tabName) {
+    // 탭 활성화
+    document.querySelectorAll('.tab').forEach(tab => {
+        tab.classList.remove('active');
+    });
+    document.querySelector(`[data-tab="${tabName}"]`).classList.add('active');
+    
+    // 컨텐츠 로드
+    if (tabName === 'today') {
+        loadTodayAnalysis();
+    } else {
+        loadHistoryAnalysis();
+    }
+}
+
+// 스와이프 지원
+let startX, startY;
+document.addEventListener('touchstart', (e) => {
+    startX = e.touches[0].clientX;
+    startY = e.touches[0].clientY;
+});
+
+document.addEventListener('touchend', (e) => {
+    const diffX = startX - e.changedTouches[0].clientX;
+    if (Math.abs(diffX) > 50) {
+        if (diffX > 0) switchTab('history');
+        else switchTab('today');
+    }
+});
+            </pre>
+        </div>
+    </div>
+
+    <div class="warning">
+        <h2>🚨 중요 주의사항</h2>
+        <ul>
+            <li><strong>데이터 정확성:</strong> measurement.html 결과와 100% 일치</li>
+            <li><strong>성능 최적화:</strong> 대용량 기록도 빠르게 처리</li>
+            <li><strong>차트 반응성:</strong> 모든 화면 크기에서 정상 표시</li>
+            <li><strong>데이터 백업:</strong> localStorage 데이터 손실 방지</li>
+            <li><strong>사용자 경험:</strong> 직관적이고 이해하기 쉬운 분석</li>
+            <li><strong>모바일 터치:</strong> 모든 차트 요소 터치 가능</li>
+        </ul>
+    </div>
+
+    <div class="section">
+        <h2>✅ 완성 검증 기준</h2>
+        <ol>
+            <li>2개 탭 (금일/과거) 완벽 동작</li>
+            <li>3개 이상 차트/그래프 정상 표시</li>
+            <li>measurement.html 데이터 연동 확인</li>
+            <li>localStorage 데이터 읽기/쓰기 정상</li>
+            <li>모바일에서 터치/스와이프 동작</li>
+            <li>모든 통계 수치 정확히 계산</li>
+            <li>개인 기록 업데이트 기능</li>
+            <li>index.html과 일관된 디자인</li>
+        </ol>
+    </div>
+
+    <hr>
+    <footer>
+        <p><strong>조대표님 승인 후 개발 시작!</strong></p>
+        <p><em>완성 후 Z:\html\analysis.html에 저장하고 보고해주세요</em></p>
+        <p>작성일: [2025.01.10 16:30] | 담당: 서대리</p>
+        <p><strong>참고:</strong> Chart.js CDN 활용 권장</p>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>서대리 코딩 지침서 - settings.html</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; line-height: 1.6; }
+        .header { background: #007acc; color: white; padding: 15px; border-radius: 5px; }
+        .section { margin: 20px 0; padding: 15px; border: 1px solid #ddd; border-radius: 5px; }
+        .important { background: #fff3cd; border-color: #ffeaa7; }
+        .feature-box { background: #e8f5e8; padding: 15px; border-radius: 5px; margin: 10px 0; }
+        .code-block { background: #f8f9fa; padding: 15px; border-radius: 5px; font-family: monospace; }
+        .form-spec { background: #f0f8f0; padding: 15px; border-left: 4px solid #2d5016; margin: 10px 0; }
+        .warning { background: #f8d7da; border-color: #f5c6cb; color: #721c24; padding: 10px; border-radius: 3px; }
+        table { width: 100%; border-collapse: collapse; margin: 10px 0; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background-color: #2d5016; color: white; }
+        ul li { margin: 5px 0; }
+        .section-demo { background: #e3f2fd; padding: 10px; margin: 5px 0; border-radius: 3px; }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>⚙️ 서대리 코딩 지침서</h1>
+        <h2>settings.html - 환경설정 페이지</h2>
+        <p><strong>작성자:</strong> 노팀장 | <strong>작성일:</strong> [2025.01.10 17:00]</p>
+    </div>
+
+    <div class="section important">
+        <h2>⚠️ 필수 준수 사항</h2>
+        <ul>
+            <li><strong>파일 위치:</strong> Z:\html\settings.html</li>
+            <li><strong>핵심 기능:</strong> 블루투스 + 개인정보 + 프로그램 정보</li>
+            <li><strong>데이터 저장:</strong> localStorage 활용</li>
+            <li><strong>폼 검증:</strong> 입력값 유효성 검사</li>
+            <li><strong>사용성:</strong> 간단하고 직관적인 인터페이스</li>
+            <li><strong>일관성:</strong> 기존 페이지들과 동일한 디자인</li>
+        </ul>
+    </div>
+
+    <div class="section">
+        <h2>🎯 페이지 핵심 기능</h2>
+        
+        <div class="feature-box">
+            <h3>1. 블루투스 연결 관리</h3>
+            <ul>
+                <li><strong>연결 상태 표시:</strong> 현재 연결된 기기 정보</li>
+                <li><strong>기기 검색:</strong> 사용 가능한 무방 센서 목록</li>
+                <li><strong>연결/해제:</strong> 버튼으로 간편 조작</li>
+                <li><strong>신호 강도:</strong> 연결 품질 시각화</li>
+                <li><strong>재연결:</strong> 연결 실패시 자동 재시도</li>
+            </ul>
+        </div>
+
+        <div class="feature-box">
+            <h3>2. 개인정보 입력</h3>
+            <ul>
+                <li><strong>기본 정보:</strong> 이름, 성별, 나이</li>
+                <li><strong>골프 정보:</strong> 핸디캡, 주 사용 클럽</li>
+                <li><strong>목표 설정:</strong> 목표 스윙속도, 연습 횟수</li>
+                <li><strong>저장/불러오기:</strong> 입력 데이터 영구 보관</li>
+                <li><strong>초기화:</strong> 설정 리셋 기능</li>
+            </ul>
+        </div>
+
+        <div class="feature-box">
+            <h3>3. 프로그램 정보</h3>
+            <ul>
+                <li><strong>앱 정보:</strong> 버전, 업데이트 날짜</li>
+                <li><strong>사용법:</strong> 간단한 가이드</li>
+                <li><strong>센서 정보:</strong> 하드웨어 사양</li>
+                <li><strong>문의처:</strong> 고객지원 연락처</li>
+                <li><strong>라이선스:</strong> 오픈소스 정보</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>📱 화면 구성 요구사항</h2>
+        
+        <h3>1. 헤더 영역</h3>
+        <ul>
+            <li>페이지 제목: "환경설정"</li>
+            <li>홈 버튼 (←) - index.html로 이동</li>
+            <li>설정 저장 버튼 (✓)</li>
+            <li>현재 블루투스 상태 아이콘</li>
+        </ul>
+
+        <h3>2. 메인 컨텐츠 - 3개 섹션</h3>
+        
+        <div class="section-demo">
+            <h4>📡 블루투스 설정 섹션</h4>
+            <ul>
+                <li>현재 상태: 연결됨/미연결 표시</li>
+                <li>기기 목록: "무방 센서 01", "무방 센서 02" 등</li>
+                <li>연결 버튼: 큰 버튼으로 쉽게 접근</li>
+                <li>신호 강도: 5단계 바 또는 아이콘</li>
+            </ul>
+        </div>
+
+        <div class="section-demo">
+            <h4>👤 개인정보 섹션</h4>
+            <ul>
+                <li>이름: 텍스트 입력 (2자 이상)</li>
+                <li>성별: 라디오 버튼 (남성/여성)</li>
+                <li>나이: 숫자 입력 (10-99세)</li>
+                <li>핸디캡: 슬라이더 (0-36)</li>
+                <li>주 클럽: 드롭다운 (드라이버/아이언/하이브리드)</li>
+            </ul>
+        </div>
+
+        <div class="section-demo">
+            <h4>🎯 목표 설정 섹션</h4>
+            <ul>
+                <li>목표 속도: 숫자 입력 + 슬라이더</li>
+                <li>주간 연습: 횟수 선택 (1-7회)</li>
+                <li>알림 설정: 토글 스위치</li>
+            </ul>
+        </div>
+
+        <h3>3. 하단 영역</h3>
+        <ul>
+            <li>저장 버튼: 전체 설정 저장</li>
+            <li>초기화 버튼: 기본값으로 복원</li>
+            <li>내보내기 버튼: 설정 백업 (추후 확장)</li>
+        </ul>
+    </div>
+
+    <div class="section">
+        <h2>⚙️ 데이터 구조 및 저장</h2>
+        
+        <div class="form-spec">
+            <h3>localStorage 데이터 스키마</h3>
+            <div class="code-block">
+                <pre>
+const userSettings = {
+    // 개인정보
+    profile: {
+        name: "",
+        gender: "male", // male, female
+        age: 25,
+        handicap: 18,
+        mainClub: "driver" // driver, iron, hybrid
+    },
+    
+    // 목표 설정
+    goals: {
+        targetSpeed: 40.0, // m/s
+        weeklyPractice: 3, // 주간 연습 횟수
+        notifications: true
+    },
+    
+    // 블루투스 설정
+    bluetooth: {
+        lastConnectedDevice: "",
+        deviceList: ["무방 센서 01", "무방 센서 02"],
+        isConnected: false,
+        signalStrength: 0 // 0-5
+    },
+    
+    // 시스템 설정
+    system: {
+        theme: "default",
+        language: "ko",
+        soundEnabled: true,
+        vibrationEnabled: true
+    },
+    
+    // 메타데이터
+    meta: {
+        lastUpdated: "2025-01-10T17:00:00Z",
+        version: "1.0"
+    }
+};
+                </pre>
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>🔧 JavaScript 함수 명세</h2>
+        
+        <div class="code-block">
+            <h3>필수 구현 함수</h3>
+            <pre>
+// 1. 데이터 관리 함수
+function loadSettings()              // 저장된 설정 불러오기
+function saveSettings()              // 현재 설정 저장
+function resetSettings()             // 기본값으로 초기화
+function validateForm()              // 입력값 검증
+
+// 2. 블루투스 관리 함수
+function scanBluetoothDevices()      // 기기 검색 시뮬레이션
+function connectDevice(deviceName)   // 기기 연결
+function disconnectDevice()          // 연결 해제
+function updateSignalStrength()      // 신호 강도 업데이트
+
+// 3. UI 업데이트 함수
+function updateBluetoothStatus()     // 블루투스 상태 표시
+function showSuccessMessage(msg)     // 성공 메시지
+function showErrorMessage(msg)       // 에러 메시지
+function updateFormValues()          // 폼 데이터 업데이트
+
+// 4. 이벤트 핸들러
+function handleFormSubmit()          // 폼 제출 처리
+function handleDeviceSelect()        // 기기 선택 처리
+function handleReset()               // 초기화 처리
+            </pre>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>🎨 UI 컴포넌트 설계</h2>
+        
+        <h3>블루투스 연결 상태</h3>
+        <table>
+            <tr>
+                <th>상태</th>
+                <th>아이콘</th>
+                <th>색상</th>
+                <th>메시지</th>
+            </tr>
+            <tr>
+                <td>연결됨</td>
+                <td>📶</td>
+                <td>#28a745 (초록)</td>
+                <td>"무방 센서 01 연결됨"</td>
+            </tr>
+            <tr>
+                <td>검색 중</td>
+                <td>🔍</td>
+                <td>#ffc107 (노랑)</td>
+                <td>"기기 검색 중..."</td>
+            </tr>
+            <tr>
+                <td>미연결</td>
+                <td>📡</td>
+                <td>#dc3545 (빨강)</td>
+                <td>"연결된 기기 없음"</td>
+            </tr>
+            <tr>
+                <td>연결 중</td>
+                <td>⏳</td>
+                <td>#007acc (파랑)</td>
+                <td>"연결 시도 중..."</td>
+            </tr>
+        </table>
+
+        <h3>폼 입력 요소 스타일</h3>
+        <ul>
+            <li><strong>텍스트 입력:</strong> 44px 높이, 둥근 모서리, 테두리 골프 그린</li>
+            <li><strong>라디오/체크박스:</strong> 큰 터치 영역, 명확한 라벨</li>
+            <li><strong>슬라이더:</strong> 골프 그린 색상, 현재값 실시간 표시</li>
+            <li><strong>드롭다운:</strong> 모바일 친화적 select 박스</li>
+            <li><strong>버튼:</strong> 최소 44px, 터치 피드백</li>
+        </ul>
+    </div>
+
+    <div class="section">
+        <h2>📋 입력 검증 규칙</h2>
+        
+        <div class="form-spec">
+            <h3>필드별 검증 조건</h3>
+            <ul>
+                <li><strong>이름:</strong> 2자 이상, 한글/영문/숫자만 허용</li>
+                <li><strong>나이:</strong> 10-99 사이 숫자</li>
+                <li><strong>핸디캡:</strong> 0-36 사이 숫자</li>
+                <li><strong>목표 속도:</strong> 20-60 m/s 범위</li>
+                <li><strong>연습 횟수:</strong> 1-7회 범위</li>
+            </ul>
+        </div>
+
+        <div class="code-block">
+            <h3>검증 함수 예시</h3>
+            <pre>
+function validateName(name) {
+    if (name.length < 2) {
+        return { valid: false, message: "이름은 2자 이상 입력해주세요" };
+    }
+    const regex = /^[가-힣a-zA-Z0-9\s]+$/;
+    if (!regex.test(name)) {
+        return { valid: false, message: "올바른 이름을 입력해주세요" };
+    }
+    return { valid: true };
+}
+
+function validateAge(age) {
+    const ageNum = parseInt(age);
+    if (isNaN(ageNum) || ageNum < 10 || ageNum > 99) {
+        return { valid: false, message: "나이는 10-99 사이로 입력해주세요" };
+    }
+    return { valid: true };
+}
+            </pre>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>🎯 블루투스 시뮬레이션</h2>
+        
+        <div class="code-block">
+            <h3>기기 검색 및 연결 시뮬레이션</h3>
+            <pre>
+// 가상 기기 목록
+const availableDevices = [
+    { name: "무방 센서 01", signal: 5, battery: 85 },
+    { name: "무방 센서 02", signal: 3, battery: 92 },
+    { name: "무방 센서 03", signal: 2, battery: 67 }
+];
+
+function simulateDeviceScan() {
+    return new Promise((resolve) => {
+        setTimeout(() => {
+            const foundDevices = availableDevices.filter(
+                () => Math.random() > 0.3 // 70% 확률로 발견
+            );
+            resolve(foundDevices);
+        }, 2000); // 2초 검색 시간
+    });
+}
+
+function simulateConnection(deviceName) {
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            if (Math.random() > 0.1) { // 90% 성공률
+                resolve({
+                    success: true,
+                    device: deviceName,
+                    signal: Math.floor(Math.random() * 5) + 1
+                });
+            } else {
+                reject(new Error("연결에 실패했습니다"));
+            }
+        }, 3000); // 3초 연결 시간
+    });
+}
+            </pre>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>💫 사용자 경험 개선</h2>
+        
+        <h3>상호작용 피드백</h3>
+        <ul>
+            <li><strong>저장 성공:</strong> 초록색 토스트 메시지 + 체크 아이콘</li>
+            <li><strong>연결 성공:</strong> 진동 피드백 + 성공 사운드</li>
+            <li><strong>입력 오류:</strong> 필드 테두리 빨간색 + 에러 메시지</li>
+            <li><strong>로딩 상태:</strong> 스피너 애니메이션</li>
+        </ul>
+
+        <h3>접근성 고려사항</h3>
+        <ul>
+            <li>모든 입력 필드에 label 연결</li>
+            <li>키보드 네비게이션 지원</li>
+            <li>충분한 색상 대비</li>
+            <li>스크린 리더 호환성</li>
+        </ul>
+    </div>
+
+    <div class="section">
+        <h2>📄 프로그램 정보 섹션</h2>
+        
+        <div class="feature-box">
+            <h3>표시할 정보</h3>
+            <ul>
+                <li><strong>앱 정보:</strong>
+                    <ul>
+                        <li>앱 이름: 무방(MOOVANG)</li>
+                        <li>버전: V1.0</li>
+                        <li>빌드: 2025.01.10</li>
+                        <li>개발사: 휴먼써클</li>
+                    </ul>
+                </li>
+                <li><strong>센서 정보:</strong>
+                    <ul>
+                        <li>샘플링 주파수: 100Hz</li>
+                        <li>연결 방식: 블루투스 5.0</li>
+                        <li>배터리 수명: 약 8시간</li>
+                        <li>측정 범위: ±2000 deg/s</li>
+                    </ul>
+                </li>
+                <li><strong>사용법 요약:</strong>
+                    <ul>
+                        <li>1. 센서 연결</li>
+                        <li>2. 개인정보 입력</li>
+                        <li>3. 스윙 측정</li>
+                        <li>4. 결과 분석</li>
+                    </ul>
+                </li>
+                <li><strong>지원 정보:</strong>
+                    <ul>
+                        <li>고객지원: support@humancircle.co.kr</li>
+                        <li>홈페이지: www.moovang.com</li>
+                        <li>버전 업데이트 확인</li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="warning">
+        <h2>🚨 중요 주의사항</h2>
+        <ul>
+            <li><strong>데이터 보안:</strong> 개인정보 안전한 로컬 저장</li>
+            <li><strong>입력 검증:</strong> 모든 필드 유효성 검사 필수</li>
+            <li><strong>사용자 경험:</strong> 직관적이고 간단한 인터페이스</li>
+            <li><strong>에러 처리:</strong> 친화적인 오류 메시지</li>
+            <li><strong>성능:</strong> 빠른 응답과 부드러운 애니메이션</li>
+            <li><strong>호환성:</strong> 모든 모바일 브라우저 지원</li>
+        </ul>
+    </div>
+
+    <div class="section">
+        <h2>✅ 완성 검증 기준</h2>
+        <ol>
+            <li>3개 섹션 (블루투스, 개인정보, 프로그램 정보) 모두 동작</li>
+            <li>모든 입력 필드 검증 기능 정상</li>
+            <li>localStorage 데이터 저장/불러오기 완벽</li>
+            <li>블루투스 시뮬레이션 자연스럽게 동작</li>
+            <li>모바일에서 터치 인터페이스 완벽</li>
+            <li>성공/실패 메시지 적절히 표시</li>
+            <li>초기화 기능 정상 동작</li>
+            <li>기존 페이지들과 일관된 디자인</li>
+        </ol>
+    </div>
+
+    <hr>
+    <footer>
+        <p><strong>조대표님 승인 후 개발 시작!</strong></p>
+        <p><em>완성 후 Z:\html\settings.html에 저장하고 보고해주세요</em></p>
+        <p>작성일: [2025.01.10 17:00] | 담당: 서대리</p>
+        <p><strong>참고:</strong> 간단하고 사용하기 쉬운 설정 화면 구현</p>
+    </footer>
+</body>
+</html>
